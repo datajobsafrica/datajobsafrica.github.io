@@ -244,22 +244,18 @@
     .tag-salary { background: rgba(255,184,0,0.1); color: var(--accent2); }
     .tag-duration { background: rgba(101,92,92,0.1); color: var(--muted); }
     .job-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.3rem; color: var(--text); }
-.job-company { color: #000000; font-size: 0.85rem; font-weight: bold; }
-.job-apply {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: 1rem;
-  color: #000000;
-  text-decoration: none;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
-  transition: gap 0.2s;
-}
-.job-apply:hover { gap: 0.7rem; }
-.job-apply[style*="cursor:default"] {
-  color: #000000 !important;
-}
+    .job-company { color: #000000; font-size: 0.85rem; font-weight: bold; }
+    .job-apply {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      text-decoration: none;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      transition: gap 0.2s;
+    }
+    .job-apply:hover { gap: 0.7rem; }
     .job-date { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); white-space: nowrap; }
     .channels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
     .channel-card { background: var(--card); padding: 2rem 1.5rem; text-align: center; transition: background 0.2s; cursor: pointer; }
@@ -306,23 +302,15 @@
       transition: transform 0.2s;
     }
     #scrollTop:hover { transform: translateY(-3px); }
-	
-/* Email dans les instructions : bleu */
-.job-apply[href*="mailto"] {
-  color: #1e4a6b !important;
-  text-decoration: underline;
-}
-
-/* Bouton PDF : bordeaux */
-a.job-apply[href*=".pdf"],
-a.job-apply[href*="drive.google"],
-a.job-apply[href*="media.licdn"] {
-  color: #8B0000 !important;
-  font-weight: bold;
-}
-.tag, .job-meta .tag {
-  font-weight: bold !important;
-}
+    
+    /* Email et lien candidature : bleus */
+    .job-apply[href^="mailto"] { color: #1e4a6b !important; text-decoration: underline; }
+    .job-apply[href^="http"] { color: #1e4a6b !important; text-decoration: underline; }
+    /* Instructions : noir */
+    .job-apply-instruction { color: #000000 !important; cursor: default; }
+    /* PDF : bordeaux */
+    .job-apply-pdf[href*=".pdf"], .job-apply-pdf[href*="drive.google"], .job-apply-pdf[href*="media.licdn"] { color: #8B0000 !important; font-weight: bold; }
+    .tag, .job-meta .tag { font-weight: bold !important; }
   </style>
 </head>
 <body>
@@ -431,26 +419,37 @@ a.job-apply[href*="media.licdn"] {
       const card = document.createElement('div');
       card.className = 'job-card';
       
-      // Construction des métas
+      // Métas
       const regionTag = job.region ? `<span class="tag tag-region">🌍 ${job.region}</span>` : '';
       const deadlineTag = job.deadline && job.deadline !== "Non spécifiée" ? `<span class="tag tag-deadline">📅 ${job.deadline}</span>` : '';
       const salaryTag = job.salary && job.salary !== "Non spécifié" ? `<span class="tag tag-salary">💰 ${job.salary}</span>` : '';
       const durationTag = job.duration && job.duration !== "CDI" ? `<span class="tag tag-duration">⏱️ ${job.duration}</span>` : '';
       
-      // Lien postuler (URL ou email ou texte)
-      let applyLink;
-      if (job.link && job.link.startsWith('http')) {
-        applyLink = `<a href="${job.link}" class="job-apply" target="_blank" rel="noopener">Postuler →</a>`;
-      } else if (job.link && job.link.includes('@')) {
-        applyLink = `<a href="mailto:${job.link}" class="job-apply" target="_blank" rel="noopener">📧 ${job.link}</a>`;
-      } else {
-        applyLink = `<span class="job-apply" style="cursor:default; color:var(--accent);">📧 ${job.link || 'Non spécifié'}</span>`;
+      // 1. INSTRUCTIONS (noir)
+      let instructionsHtml = '';
+      if (job.instructions && job.instructions.trim() !== '') {
+        instructionsHtml = `<div class="job-apply job-apply-instruction" style="margin-top:0.5rem;">📝 ${job.instructions}</div>`;
       }
       
-      // Lien PDF (si présent)
-      const pdfHtml = job.pdfLink && job.pdfLink !== ""
-        ? `<a href="${job.pdfLink}" class="job-apply" target="_blank" rel="noopener" style="margin-left: 1rem;">📄 Lien vers le PDF</a>`
-        : `<span class="job-apply" style="cursor:default; color:var(--muted); margin-left: 1rem;">📄 Unavailable</span>`;
+      // 2. EMAIL (bleu)
+      let emailHtml = '';
+      if (job.contactEmail && job.contactEmail.trim() !== '') {
+        emailHtml = `<a href="mailto:${job.contactEmail}" class="job-apply" style="margin-top:0.5rem;">📧 ${job.contactEmail}</a>`;
+      }
+      
+      // 3. LIEN CANDIDATURE (bleu)
+      let applyLinkHtml = '';
+      if (job.applyLink && job.applyLink.trim() !== '') {
+        applyLinkHtml = `<a href="${job.applyLink}" class="job-apply" target="_blank" rel="noopener" style="margin-top:0.5rem;">🔗 Postuler →</a>`;
+      }
+      
+      // 4. PDF (bordeaux)
+      let pdfHtml = '';
+      if (job.pdfLink && job.pdfLink.trim() !== '') {
+        pdfHtml = `<a href="${job.pdfLink}" class="job-apply job-apply-pdf" target="_blank" rel="noopener" style="margin-top:0.5rem;">📄 Lien vers le PDF</a>`;
+      } else {
+        pdfHtml = `<span class="job-apply" style="cursor:default; color:var(--muted); margin-top:0.5rem;">📄 Unavailable</span>`;
+      }
       
       card.innerHTML = `
         <div>
@@ -467,8 +466,11 @@ a.job-apply[href*="media.licdn"] {
           </div>
           <div class="job-title">${job.title}</div>
           <div class="job-company">${job.company}</div>
+          ${job.description ? `<div style="margin-top:0.8rem; font-size:0.85rem; line-height:1.5; color:var(--text);">${job.description}</div>` : ''}
           <div>
-            ${applyLink}
+            ${instructionsHtml}
+            ${emailHtml}
+            ${applyLinkHtml}
             ${pdfHtml}
           </div>
         </div>
