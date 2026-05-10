@@ -504,7 +504,8 @@
         descriptionHtml = `
           <div class="job-description-wrapper">
             <button class="desc-toggle" onclick="toggleDescription(this, '${descId}')">▶ Voir la description</button>
-            <div id="${descId}" class="desc-content" style="display:none;">${job.description}</div>
+            <div id="${descId}" class="desc-content" style="display:none;"></div>
+		<script>document.getElementById('${descId}').innerHTML = ${JSON.stringify(job.description)};</script>
           </div>
         `;
       }
