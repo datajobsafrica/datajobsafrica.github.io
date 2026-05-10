@@ -1,5 +1,28 @@
 [
   {
+    "id": 1778395289899,
+    "title": "M&E Associate (Rapid Experimentation)",
+    "company": "GiveDirectly",
+    "region": "Afrique de l'Est",
+    "location": "Kigali, Rwanda",
+    "country": "Rwanda",
+    "city": "Kigali",
+    "type": "meal",
+    "level": "Junior",
+    "deadline": "2026-05-15",
+    "salary": "Kigali: $37,600, Nairobia: $46,200",
+    "duration": "CDI",
+    "remote": true,
+    "isNew": true,
+    "date": "10/05/2026",
+    "description": "",
+    "contactEmail": "",
+    "applyLink": "https://job-boards.greenhouse.io/givedirectly/jobs/4690750005",
+    "instructions": "",
+    "pdfLink": "",
+    "source": "admin_web"
+  },
+  {
     "id": 1778390279190,
     "title": "Consultant, MLE Strategy",
     "company": "Evidence Action",

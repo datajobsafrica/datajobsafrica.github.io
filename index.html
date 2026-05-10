@@ -431,7 +431,6 @@
   let JOBS = [];
   let currentFilter = 'all';
 
-  // Fonction pour trier les offres par date (plus récent en premier)
   function trierParDate(offres) {
     return offres.sort((a, b) => {
       const dateA = a.date ? new Date(a.date.split('/').reverse().join('-')) : new Date(0);
@@ -480,45 +479,36 @@
       const card = document.createElement('div');
       card.className = 'job-card';
       
-      // Vérifier si l'offre est expirée
       let isExpired = false;
       if (job.deadline && job.deadline !== "Non spécifiée" && job.deadline !== "Non spécifiée") {
         const [year, month, day] = job.deadline.split('-');
         const deadlineDate = new Date(year, month-1, day);
-        if (deadlineDate < today) {
-          isExpired = true;
-        }
+        if (deadlineDate < today) isExpired = true;
       }
       
-      // Métas
       const regionTag = job.region ? `<span class="tag tag-region">🌍 ${job.region}</span>` : '';
       const deadlineTag = job.deadline && job.deadline !== "Non spécifiée" ? `<span class="tag tag-deadline">📅 ${job.deadline}</span>` : '';
       const salaryTag = job.salary && job.salary !== "Non spécifié" ? `<span class="tag tag-salary">💰 ${job.salary}</span>` : '';
       const durationTag = job.duration && job.duration !== "CDI" ? `<span class="tag tag-duration">⏱️ ${job.duration}</span>` : '';
       
-      // Badges
       const newBadge = job.isNew ? '<span class="tag tag-new">🔥 Nouveau</span>' : '';
       const expiredBadge = isExpired ? '<span class="tag tag-expired">⏰ Expiré</span>' : '';
       
-      // 1. INSTRUCTIONS (noir)
       let instructionsHtml = '';
       if (job.instructions && job.instructions.trim() !== '') {
         instructionsHtml = `<div class="job-apply job-apply-instruction" style="margin-top:0.5rem;">📝 ${job.instructions}</div>`;
       }
       
-      // 2. EMAIL (bleu)
       let emailHtml = '';
       if (job.contactEmail && job.contactEmail.trim() !== '') {
         emailHtml = `<a href="mailto:${job.contactEmail}" class="job-apply" style="margin-top:0.5rem;">📧 ${job.contactEmail}</a>`;
       }
       
-      // 3. LIEN CANDIDATURE (bleu)
       let applyLinkHtml = '';
       if (job.applyLink && job.applyLink.trim() !== '') {
         applyLinkHtml = `<a href="${job.applyLink}" class="job-apply" target="_blank" rel="noopener" style="margin-top:0.5rem;">🔗 Apply →</a>`;
       }
       
-      // 4. PDF (noir + bordeaux)
       let pdfHtml = '';
       if (job.pdfLink && job.pdfLink.trim() !== '') {
         pdfHtml = `<div style="margin-top:0.5rem;"><span class="pdf-label">PDF: </span><a href="${job.pdfLink}" class="job-apply pdf-link" target="_blank" rel="noopener">Link to the PDF</a></div>`;
@@ -526,9 +516,9 @@
         pdfHtml = `<div style="margin-top:0.5rem;"><span class="pdf-label">PDF: </span><span class="job-apply pdf-unavailable" style="cursor:default;">Unavailable</span></div>`;
       }
       
-      // Description avec accordéon (version qui FORCE l’interprétation HTML)
       const descId = `desc-${job.id || index}`;
       let descriptionHtml = '';
+      // Afficher le bouton uniquement si summary existe et n'est pas vide
       if (job.summary && job.summary.trim() !== '') {
         descriptionHtml = `
           <div class="job-description-wrapper">
@@ -536,11 +526,6 @@
             <div id="${descId}" class="desc-content" style="display:none;">${job.summary}</div>
           </div>
         `;
-        // On force l’interprétation du HTML après l’insertion
-        setTimeout(() => {
-          const descDiv = document.getElementById(descId);
-          if (descDiv) descDiv.innerHTML = job.summary;
-        }, 0);
       }
       
       card.innerHTML = `
