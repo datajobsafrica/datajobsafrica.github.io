@@ -9,22 +9,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-  --bg: #f4f6f9;
-  --surface: #eef2f5;
-  --card: #ffffff;
-  --border: #dce4ec;
-  --accent: #00a86b;
-  --accent2: #ffb800;
-  --accent3: #00a2ff;
-  --text: #1a2a32;
-  --muted: #4a6272;
-  --danger: #e65c5c;
-}
+      --bg: #f4f6f9;
+      --surface: #eef2f5;
+      --card: #ffffff;
+      --border: #dce4ec;
+      --accent: #00a86b;
+      --accent2: #ffb800;
+      --accent3: #00a2ff;
+      --text: #1a2a32;
+      --muted: #4a6272;
+      --danger: #e65c5c;
+    }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg);
       color: var(--text);
@@ -33,8 +31,6 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-
-    /* NOISE TEXTURE */
     body::before {
       content: '';
       position: fixed;
@@ -44,34 +40,27 @@
       z-index: 0;
       opacity: 0.4;
     }
-
-    /* GRID BG */
     body::after {
       content: '';
       position: fixed;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(0,232,122,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,232,122,0.03) 1px, transparent 1px);
+      background-image: linear-gradient(rgba(0,232,122,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,232,122,0.03) 1px, transparent 1px);
       background-size: 40px 40px;
       pointer-events: none;
       z-index: 0;
     }
-
-    /* NAV */
     nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  background: #0d2b1f;
-  backdrop-filter: none;
-  border-bottom: 1px solid #1a4d33;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: #0d2b1f;
+      backdrop-filter: none;
+      border-bottom: 1px solid #1a4d33;
     }
-
     .logo {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
@@ -80,17 +69,15 @@
       color: var(--accent);
       text-decoration: none;
     }
-
     .logo span { color: #ffffff; }
-
     nav ul {
       list-style: none;
       display: flex;
       gap: 2rem;
     }
-
     nav ul a {
-      color: #ffffff; text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
       text-decoration: none;
       font-size: 0.85rem;
       letter-spacing: 0.05em;
@@ -98,9 +85,7 @@
       transition: color 0.2s;
       font-family: 'Space Mono', monospace;
     }
-
     nav ul a:hover { color: var(--accent); }
-
     .nav-cta {
       background: var(--accent);
       color: #000 !important;
@@ -108,10 +93,7 @@
       border-radius: 2px;
       font-weight: 700 !important;
     }
-
     .nav-cta:hover { background: #00ff88; color: #000 !important; }
-
-    /* HERO */
     .hero {
       position: relative;
       z-index: 1;
@@ -124,7 +106,6 @@
       padding: 8rem 2rem 4rem;
       overflow: hidden;
     }
-
     .hero-glow {
       position: absolute;
       width: 600px;
@@ -135,7 +116,6 @@
       transform: translate(-50%, -50%);
       pointer-events: none;
     }
-
     .hero-tag {
       display: inline-flex;
       align-items: center;
@@ -149,7 +129,6 @@
       margin-bottom: 2rem;
       animation: fadeUp 0.6s ease both;
     }
-
     .hero-tag::before {
       content: '';
       width: 6px; height: 6px;
@@ -157,17 +136,14 @@
       border-radius: 50%;
       animation: pulse 2s ease infinite;
     }
-
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(0.7); }
     }
-
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     .hero h1 {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
@@ -177,12 +153,10 @@
       margin-bottom: 1.5rem;
       animation: fadeUp 0.6s 0.1s ease both;
     }
-
     .hero h1 .line2 {
       display: block;
       color: var(--accent);
     }
-
     .hero p {
       max-width: 560px;
       color: var(--muted);
@@ -191,7 +165,6 @@
       margin-bottom: 2.5rem;
       animation: fadeUp 0.6s 0.2s ease both;
     }
-
     .hero-btns {
       display: flex;
       gap: 1rem;
@@ -199,7 +172,6 @@
       justify-content: center;
       animation: fadeUp 0.6s 0.3s ease both;
     }
-
     .btn {
       display: inline-flex;
       align-items: center;
@@ -213,31 +185,25 @@
       cursor: pointer;
       border: none;
     }
-
     .btn-primary {
       background: var(--accent);
       color: #000;
       font-weight: 700;
     }
-
     .btn-primary:hover {
       background: #00ff88;
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(0,232,122,0.3);
     }
-
     .btn-outline {
       border: 1px solid var(--border);
       color: var(--text);
       background: transparent;
     }
-
     .btn-outline:hover {
       border-color: var(--accent);
       color: var(--accent);
     }
-
-    /* STATS */
     .stats {
       position: relative;
       z-index: 1;
@@ -251,16 +217,13 @@
       flex-wrap: wrap;
       animation: fadeUp 0.6s 0.4s ease both;
     }
-
     .stat-item { text-align: center; }
-
     .stat-num {
       font-family: 'Syne', sans-serif;
       font-size: 2rem;
       font-weight: 800;
       color: var(--accent);
     }
-
     .stat-label {
       font-size: 0.75rem;
       color: var(--muted);
@@ -268,8 +231,6 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
-
-    /* SECTION */
     section {
       position: relative;
       z-index: 1;
@@ -277,7 +238,6 @@
       max-width: 1100px;
       margin: 0 auto;
     }
-
     .section-label {
       font-family: 'Space Mono', monospace;
       font-size: 0.7rem;
@@ -286,7 +246,6 @@
       letter-spacing: 0.15em;
       margin-bottom: 0.5rem;
     }
-
     .section-title {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
@@ -294,22 +253,18 @@
       letter-spacing: -0.02em;
       margin-bottom: 1rem;
     }
-
     .section-desc {
       color: var(--muted);
       max-width: 520px;
       line-height: 1.7;
       margin-bottom: 3rem;
     }
-
-    /* FILTER BAR */
     .filter-bar {
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
       margin-bottom: 2.5rem;
     }
-
     .filter-btn {
       padding: 0.4rem 1rem;
       border-radius: 2px;
@@ -321,22 +276,18 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-
     .filter-btn.active,
     .filter-btn:hover {
       border-color: var(--accent);
       color: var(--accent);
       background: rgba(0,232,122,0.07);
     }
-
-    /* JOBS GRID */
     .jobs-grid {
       display: grid;
       gap: 1px;
       background: var(--border);
       border: 1px solid var(--border);
     }
-
     .job-card {
       background: var(--card);
       padding: 1.5rem;
@@ -348,7 +299,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .job-card::before {
       content: '';
       position: absolute;
@@ -358,17 +308,14 @@
       transform: scaleY(0);
       transition: transform 0.2s;
     }
-
-    .job-card:hover { background: #1a2b1f; }
+    .job-card:hover { background: #eef2f5; }
     .job-card:hover::before { transform: scaleY(1); }
-
     .job-meta {
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
       margin-bottom: 0.6rem;
     }
-
     .tag {
       font-family: 'Space Mono', monospace;
       font-size: 0.65rem;
@@ -377,7 +324,6 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
-
     .tag-type { background: rgba(0,232,122,0.1); color: var(--accent); }
     .tag-loc { background: rgba(0,196,255,0.1); color: var(--accent3); }
     .tag-level { background: rgba(255,184,0,0.1); color: var(--accent2); }
@@ -388,7 +334,10 @@
       font-weight: 700;
       animation: pulse 2s ease infinite;
     }
-
+    .tag-region { background: rgba(0,232,122,0.1); color: var(--accent); }
+    .tag-deadline { background: rgba(0,162,255,0.1); color: var(--accent3); }
+    .tag-salary { background: rgba(255,184,0,0.1); color: var(--accent2); }
+    .tag-duration { background: rgba(101,92,92,0.1); color: var(--muted); }
     .job-title {
       font-family: 'Syne', sans-serif;
       font-weight: 700;
@@ -396,19 +345,16 @@
       margin-bottom: 0.3rem;
       color: var(--text);
     }
-
     .job-company {
       color: var(--muted);
       font-size: 0.85rem;
     }
-
     .job-date {
       font-family: 'Space Mono', monospace;
       font-size: 0.7rem;
       color: var(--muted);
       white-space: nowrap;
     }
-
     .job-apply {
       display: inline-flex;
       align-items: center;
@@ -420,10 +366,7 @@
       font-size: 0.75rem;
       transition: gap 0.2s;
     }
-
     .job-apply:hover { gap: 0.7rem; }
-
-    /* CHANNELS */
     .channels-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -431,7 +374,6 @@
       background: var(--border);
       border: 1px solid var(--border);
     }
-
     .channel-card {
       background: var(--card);
       padding: 2rem 1.5rem;
@@ -439,29 +381,23 @@
       transition: background 0.2s;
       cursor: pointer;
     }
-
-    .channel-card:hover { background: #1a2b1f; }
-
+    .channel-card:hover { background: #eef2f5; }
     .channel-icon {
       font-size: 2.5rem;
       margin-bottom: 1rem;
     }
-
     .channel-name {
       font-family: 'Syne', sans-serif;
       font-weight: 700;
       font-size: 1rem;
       margin-bottom: 0.4rem;
     }
-
     .channel-desc {
       color: var(--muted);
       font-size: 0.82rem;
       line-height: 1.6;
       margin-bottom: 1rem;
     }
-
-    /* SUBMIT SECTION */
     .submit-box {
       background: var(--card);
       border: 1px solid var(--border);
@@ -469,7 +405,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .submit-box::after {
       content: '';
       position: absolute;
@@ -478,21 +413,17 @@
       background: radial-gradient(circle, rgba(0,232,122,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
-
     .submit-box h3 {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
       font-size: 1.6rem;
       margin-bottom: 0.5rem;
     }
-
     .submit-box p {
       color: var(--muted);
       margin-bottom: 1.5rem;
       line-height: 1.7;
     }
-
-    /* FOOTER */
     footer {
       position: relative;
       z-index: 1;
@@ -504,7 +435,6 @@
       font-size: 0.75rem;
       line-height: 2;
     }
-
     footer .footer-logo {
       font-family: 'Syne', sans-serif;
       font-size: 1.2rem;
@@ -513,8 +443,6 @@
       display: block;
       margin-bottom: 1rem;
     }
-
-    /* MOBILE */
     @media (max-width: 640px) {
       nav ul { display: none; }
       .hero h1 { font-size: 2.5rem; }
@@ -522,8 +450,6 @@
       .job-card { grid-template-columns: 1fr; }
       .submit-box { padding: 2rem 1.5rem; }
     }
-
-    /* SEARCH */
     .search-bar {
       width: 100%;
       background: var(--card);
@@ -537,11 +463,8 @@
       outline: none;
       transition: border-color 0.2s;
     }
-
     .search-bar:focus { border-color: var(--accent); }
     .search-bar::placeholder { color: var(--muted); }
-
-    /* SCROLL TOP */
     #scrollTop {
       position: fixed;
       bottom: 2rem; right: 2rem;
@@ -558,13 +481,11 @@
       justify-content: center;
       transition: transform 0.2s;
     }
-
     #scrollTop:hover { transform: translateY(-3px); }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="logo">Data<span>Jobs</span>.Africa</a>
   <ul>
@@ -575,7 +496,6 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-glow"></div>
   <div class="hero-tag">🌍 Afrique · Data · Tech · IA</div>
@@ -593,7 +513,6 @@
   </div>
 </div>
 
-<!-- STATS -->
 <div class="stats">
   <div class="stat-item">
     <div class="stat-num" id="countJobs">0</div>
@@ -613,7 +532,6 @@
   </div>
 </div>
 
-<!-- OFFRES -->
 <section id="offres">
   <div class="section-label">// Opportunités</div>
   <h2 class="section-title">Offres du moment</h2>
@@ -623,239 +541,4 @@
 
   <div class="filter-bar">
     <button class="filter-btn active" onclick="filterJobs('all', this)">Tout</button>
-    <button class="filter-btn" onclick="filterJobs('analytics', this)">Data Analytics / BI</button>
-    <button class="filter-btn" onclick="filterJobs('ingenierie', this)">Data Engineering</button>
-    <button class="filter-btn" onclick="filterJobs('data-science', this)">Data Science</button>
-    <button class="filter-btn" onclick="filterJobs('ia', this)">IA / Machine Learning</button>
-    <button class="filter-btn" onclick="filterJobs('meal', this)">Monitoring and Evaluation</button>
-    <button class="filter-btn" onclick="filterJobs('research', this)">Research</button>
-    <button class="filter-btn" onclick="filterJobs('remote', this)">🌐 Remote</button>
-  </div>
-
-  <div class="jobs-grid" id="jobsGrid"></div>
-</section>
-
-<!-- REJOINDRE -->
-<section id="rejoindre">
-  <div class="section-label">// Communauté</div>
-  <h2 class="section-title">Rejoignez la communauté</h2>
-  <p class="section-desc">Suivez-nous sur vos plateformes préférées pour ne rater aucune opportunité.</p>
-
-  <div class="channels-grid">
-    <div class="channel-card">
-      <div class="channel-icon">💬</div>
-      <div class="channel-name">WhatsApp Channel</div>
-      <div class="channel-desc">Alertes instantanées dès qu'une nouvelle offre est publiée.</div>
-      <a href="VOTRE_LIEN_WHATSAPP" class="btn btn-outline" style="display:inline-flex">Rejoindre →</a>
-    </div>
-    <div class="channel-card">
-      <div class="channel-icon">📘</div>
-      <div class="channel-name">Page Facebook</div>
-      <div class="channel-desc">Actualités, conseils carrière et offres partagés quotidiennement.</div>
-      <a href="VOTRE_LIEN_FACEBOOK" class="btn btn-outline" style="display:inline-flex">Suivre →</a>
-    </div>
-    <div class="channel-card">
-      <div class="channel-icon">💼</div>
-      <div class="channel-name">LinkedIn</div>
-      <div class="channel-desc">Offres vérifiées et contenu professionnel pour booster ta carrière.</div>
-      <a href="VOTRE_LIEN_LINKEDIN" class="btn btn-outline" style="display:inline-flex">Connecter →</a>
-    </div>
-    <div class="channel-card">
-      <div class="channel-icon">📧</div>
-      <div class="channel-name">Newsletter</div>
-      <div class="channel-desc">Récap hebdomadaire des meilleures offres directement dans ta boîte mail.</div>
-      <a href="VOTRE_LIEN_NEWSLETTER" class="btn btn-outline" style="display:inline-flex">S'inscrire →</a>
-    </div>
-  </div>
-</section>
-
-<!-- SOUMETTRE -->
-<section id="soumettre">
-  <div class="submit-box">
-    <div class="section-label">// Recruteurs & RH</div>
-    <h3>Vous recrutez en Afrique ?</h3>
-    <p>Partagez votre offre gratuitement avec notre communauté de talents Data & Tech africains.<br>Envoyez les détails à notre email et nous la publierons sous 48h.</p>
-    <a href="mailto:datajobsafrica@proton.me?subject=Soumission%20d'offre%20d'emploi" class="btn btn-primary">
-      📩 Soumettre une offre
-    </a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <span class="footer-logo">DataJobs.Africa</span>
-  Une initiative indépendante pour les talents africains de la Data & Tech.<br>
-  Mis à jour chaque semaine · 100% gratuit · 🌍 Pan-africain<br><br>
-  <a href="mailto:datajobsafrica@proton.me" style="color:var(--accent);text-decoration:none;">datajobsafrica@proton.me</a>
-</footer>
-
-<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
-<script>
-  // ==============================
-  // 📋 DONNÉES DES OFFRES
-  // Pour ajouter une offre, copie un objet et modifie les champs
-  // ==============================
-  const JOBS = [
-    {
-      id: 1,
-      title: "Data Scientist Senior",
-      company: "ONU Femmes — Nairobi, Kenya",
-      type: "data-science",
-      location: "Nairobi, Kenya",
-      level: "Senior",
-      remote: false,
-      isNew: true,
-      date: "Ajouté le 08 mai 2025",
-      link: "#"
-    },
-    {
-      id: 2,
-      title: "Analyste BI & Données",
-      company: "Banque Mondiale — Dakar, Sénégal",
-      type: "analytics",
-      location: "Dakar, Sénégal",
-      level: "Junior/Mid",
-      remote: false,
-      isNew: true,
-      date: "Ajouté le 07 mai 2025",
-      link: "#"
-    },
-    {
-      id: 3,
-      title: "Machine Learning Engineer",
-      company: "Jumia — Lagos, Nigeria",
-      type: "ia",
-      location: "Lagos, Nigeria",
-      level: "Mid",
-      remote: true,
-      isNew: false,
-      date: "Ajouté le 05 mai 2025",
-      link: "#"
-    },
-    {
-      id: 4,
-      title: "Data Engineer",
-      company: "MTN Group — Johannesburg, SA",
-      type: "ingenierie",
-      location: "Johannesburg, SA",
-      level: "Senior",
-      remote: false,
-      isNew: false,
-      date: "Ajouté le 04 mai 2025",
-      link: "#"
-    },
-    {
-      id: 5,
-      title: "AI Research Associate",
-      company: "Institut Pasteur — Abidjan, CI",
-      type: "ia",
-      location: "Abidjan, CI",
-      level: "Recherche",
-      remote: false,
-      isNew: false,
-      date: "Ajouté le 03 mai 2025",
-      link: "#"
-    },
-    {
-      id: 6,
-      title: "Data Analyst — Santé Publique",
-      company: "OMS Bureau Afrique — Brazzaville, Congo",
-      type: "analytics",
-      location: "Brazzaville, Congo",
-      level: "Mid",
-      remote: false,
-      isNew: false,
-      date: "Ajouté le 02 mai 2025",
-      link: "#"
-    }
-  ];
-
-  let currentFilter = 'all';
-
-  function renderJobs(data) {
-    const grid = document.getElementById('jobsGrid');
-    grid.innerHTML = '';
-    document.getElementById('countJobs').textContent = data.length;
-
-    if (data.length === 0) {
-      grid.innerHTML = `<div style="padding:3rem;text-align:center;color:var(--muted);font-family:'Space Mono',monospace;font-size:0.85rem;">Aucune offre pour ce filtre pour le moment.</div>`;
-      return;
-    }
-
-    data.forEach(job => {
-      const card = document.createElement('div');
-      card.className = 'job-card';
-      card.innerHTML = `
-        <div>
-          <div class="job-meta">
-            ${job.isNew ? '<span class="tag tag-new">🔥 Nouveau</span>' : ''}
-            <span class="tag tag-type">${job.type.replace('-', ' ')}</span>
-            <span class="tag tag-loc">📍 ${job.location}</span>
-            <span class="tag tag-level">${job.level}</span>
-            ${job.remote ? '<span class="tag tag-remote">🌐 Remote</span>' : ''}
-          </div>
-          <div class="job-title">${job.title}</div>
-          <div class="job-company">${job.company}</div>
-          <a href="${job.link}" class="job-apply" target="_blank" rel="noopener">
-            Voir l'offre <span>→</span>
-          </a>
-        </div>
-        <div class="job-date">${job.date}</div>
-      `;
-      grid.appendChild(card);
-    });
-  }
-
-  function filterJobs(type, btn) {
-    currentFilter = type;
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    applyFilters();
-  }
-
-  function applyFilters() {
-    const search = document.getElementById('searchInput').value.toLowerCase();
-    let filtered = JOBS;
-    if (currentFilter !== 'all') {
-      if (currentFilter === 'remote') {
-        filtered = filtered.filter(j => j.remote);
-      } else {
-        filtered = filtered.filter(j => j.type === currentFilter);
-      }
-    }
-    if (search) {
-      filtered = filtered.filter(j =>
-        j.title.toLowerCase().includes(search) ||
-        j.company.toLowerCase().includes(search) ||
-        j.location.toLowerCase().includes(search)
-      );
-    }
-    renderJobs(filtered);
-  }
-
-  document.getElementById('searchInput').addEventListener('input', applyFilters);
-
-  // Animate counter
-  function animateCount(el, target, duration = 1000) {
-    let start = 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) { el.textContent = target; clearInterval(timer); return; }
-      el.textContent = Math.floor(start);
-    }, 16);
-  }
-
-  // Scroll top button
-  window.addEventListener('scroll', () => {
-    const btn = document.getElementById('scrollTop');
-    btn.style.display = window.scrollY > 500 ? 'flex' : 'none';
-  });
-
-  // Init
-  renderJobs(JOBS);
-  setTimeout(() => animateCount(document.getElementById('countJobs'), JOBS.length), 500);
-</script>
-</body>
-</html>
+    <button class="filter-btn" onclick="filterJobs
