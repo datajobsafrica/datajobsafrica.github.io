@@ -244,20 +244,20 @@
     .tag-salary { background: rgba(255,184,0,0.1); color: var(--accent2); }
     .tag-duration { background: rgba(101,92,92,0.1); color: var(--muted); }
     .job-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.3rem; color: var(--text); }
-    .job-company { color: var(--muted); font-size: 0.85rem; }
+.job-company { color: #1e4a6b; font-size: 0.85rem; }
+.job-apply {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  color: #e67e22;
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  transition: gap 0.2s;
+}
+.job-apply:hover { gap: 0.7rem; }
     .job-date { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); white-space: nowrap; }
-    .job-apply {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      margin-top: 1rem;
-      color: var(--accent);
-      text-decoration: none;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.75rem;
-      transition: gap 0.2s;
-    }
-    .job-apply:hover { gap: 0.7rem; }
     .channels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
     .channel-card { background: var(--card); padding: 2rem 1.5rem; text-align: center; transition: background 0.2s; cursor: pointer; }
     .channel-card:hover { background: #eef2f5; }
@@ -378,7 +378,7 @@
   <span class="footer-logo">DataJobs.Africa</span>
   Une initiative indépendante pour les talents africains de la Data & Tech.<br>
   Mis à jour chaque semaine · 100% gratuit · 🌍 Pan-africain<br><br>
-  <a href="mailto:datajobsafrica@proton.me" style="color:var(--accent);text-decoration:none;">datajobsafrica@proton.me</a>
+  <a href="mailto:datajobsafrica@proton.me" style="color:var(--accent);text-decoration:none;">datajobsafrica@gmail.com</a>
 </footer>
 
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
