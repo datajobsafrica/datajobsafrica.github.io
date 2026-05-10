@@ -20,7 +20,6 @@
       --muted: #4a6272;
       --danger: #e65c5c;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -70,11 +69,7 @@
       text-decoration: none;
     }
     .logo span { color: #ffffff; }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
     nav ul a {
       color: #ffffff;
       text-shadow: 0 1px 2px rgba(0,0,0,0.2);
@@ -136,14 +131,8 @@
       border-radius: 50%;
       animation: pulse 2s ease infinite;
     }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     .hero h1 {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
@@ -153,10 +142,7 @@
       margin-bottom: 1.5rem;
       animation: fadeUp 0.6s 0.1s ease both;
     }
-    .hero h1 .line2 {
-      display: block;
-      color: var(--accent);
-    }
+    .hero h1 .line2 { display: block; color: var(--accent); }
     .hero p {
       max-width: 560px;
       color: var(--muted);
@@ -165,13 +151,7 @@
       margin-bottom: 2.5rem;
       animation: fadeUp 0.6s 0.2s ease both;
     }
-    .hero-btns {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      animation: fadeUp 0.6s 0.3s ease both;
-    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.6s 0.3s ease both; }
     .btn {
       display: inline-flex;
       align-items: center;
@@ -185,25 +165,10 @@
       cursor: pointer;
       border: none;
     }
-    .btn-primary {
-      background: var(--accent);
-      color: #000;
-      font-weight: 700;
-    }
-    .btn-primary:hover {
-      background: #00ff88;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(0,232,122,0.3);
-    }
-    .btn-outline {
-      border: 1px solid var(--border);
-      color: var(--text);
-      background: transparent;
-    }
-    .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+    .btn-primary { background: var(--accent); color: #000; font-weight: 700; }
+    .btn-primary:hover { background: #00ff88; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,232,122,0.3); }
+    .btn-outline { border: 1px solid var(--border); color: var(--text); background: transparent; }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
     .stats {
       position: relative;
       z-index: 1;
@@ -218,53 +183,13 @@
       animation: fadeUp 0.6s 0.4s ease both;
     }
     .stat-item { text-align: center; }
-    .stat-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--accent);
-    }
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      font-family: 'Space Mono', monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    section {
-      position: relative;
-      z-index: 1;
-      padding: 5rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .section-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 0.5rem;
-    }
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-    }
-    .section-desc {
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.7;
-      margin-bottom: 3rem;
-    }
-    .filter-bar {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 2.5rem;
-    }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 0.75rem; color: var(--muted); font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; }
+    section { position: relative; z-index: 1; padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.5rem; }
+    .section-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.8rem); letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .section-desc { color: var(--muted); max-width: 520px; line-height: 1.7; margin-bottom: 3rem; }
+    .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
     .filter-btn {
       padding: 0.4rem 1rem;
       border-radius: 2px;
@@ -276,18 +201,8 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .filter-btn.active,
-    .filter-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(0,232,122,0.07);
-    }
-    .jobs-grid {
-      display: grid;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
+    .filter-btn.active, .filter-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,232,122,0.07); }
+    .jobs-grid { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); }
     .job-card {
       background: var(--card);
       padding: 1.5rem;
@@ -310,12 +225,7 @@
     }
     .job-card:hover { background: #eef2f5; }
     .job-card:hover::before { transform: scaleY(1); }
-    .job-meta {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.6rem;
-    }
+    .job-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
     .tag {
       font-family: 'Space Mono', monospace;
       font-size: 0.65rem;
@@ -328,33 +238,14 @@
     .tag-loc { background: rgba(0,196,255,0.1); color: var(--accent3); }
     .tag-level { background: rgba(255,184,0,0.1); color: var(--accent2); }
     .tag-remote { background: rgba(255,92,92,0.1); color: var(--danger); }
-    .tag-new {
-      background: var(--accent);
-      color: #000;
-      font-weight: 700;
-      animation: pulse 2s ease infinite;
-    }
+    .tag-new { background: var(--accent); color: #000; font-weight: 700; animation: pulse 2s ease infinite; }
     .tag-region { background: rgba(0,232,122,0.1); color: var(--accent); }
     .tag-deadline { background: rgba(0,162,255,0.1); color: var(--accent3); }
     .tag-salary { background: rgba(255,184,0,0.1); color: var(--accent2); }
     .tag-duration { background: rgba(101,92,92,0.1); color: var(--muted); }
-    .job-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      margin-bottom: 0.3rem;
-      color: var(--text);
-    }
-    .job-company {
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
-    .job-date {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--muted);
-      white-space: nowrap;
-    }
+    .job-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.3rem; color: var(--text); }
+    .job-company { color: var(--muted); font-size: 0.85rem; }
+    .job-date { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); white-space: nowrap; }
     .job-apply {
       display: inline-flex;
       align-items: center;
@@ -367,89 +258,19 @@
       transition: gap 0.2s;
     }
     .job-apply:hover { gap: 0.7rem; }
-    .channels-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-    .channel-card {
-      background: var(--card);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: background 0.2s;
-      cursor: pointer;
-    }
+    .channels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .channel-card { background: var(--card); padding: 2rem 1.5rem; text-align: center; transition: background 0.2s; cursor: pointer; }
     .channel-card:hover { background: #eef2f5; }
-    .channel-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    .channel-name {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 0.4rem;
-    }
-    .channel-desc {
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-    .submit-box {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .submit-box::after {
-      content: '';
-      position: absolute;
-      right: -80px; top: -80px;
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(0,232,122,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .submit-box h3 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.6rem;
-      margin-bottom: 0.5rem;
-    }
-    .submit-box p {
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-    }
-    footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--border);
-      padding: 3rem 2rem;
-      text-align: center;
-      color: var(--muted);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.75rem;
-      line-height: 2;
-    }
-    footer .footer-logo {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: var(--accent);
-      display: block;
-      margin-bottom: 1rem;
-    }
-    @media (max-width: 640px) {
-      nav ul { display: none; }
-      .hero h1 { font-size: 2.5rem; }
-      .stats { gap: 2rem; }
-      .job-card { grid-template-columns: 1fr; }
-      .submit-box { padding: 2rem 1.5rem; }
-    }
+    .channel-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .channel-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; }
+    .channel-desc { color: var(--muted); font-size: 0.82rem; line-height: 1.6; margin-bottom: 1rem; }
+    .submit-box { background: var(--card); border: 1px solid var(--border); padding: 3rem; position: relative; overflow: hidden; }
+    .submit-box::after { content: ''; position: absolute; right: -80px; top: -80px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(0,232,122,0.08) 0%, transparent 70%); pointer-events: none; }
+    .submit-box h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6rem; margin-bottom: 0.5rem; }
+    .submit-box p { color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7; }
+    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.75rem; line-height: 2; }
+    footer .footer-logo { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--accent); display: block; margin-bottom: 1rem; }
+    @media (max-width: 640px) { nav ul { display: none; } .hero h1 { font-size: 2.5rem; } .stats { gap: 2rem; } .job-card { grid-template-columns: 1fr; } .submit-box { padding: 2rem 1.5rem; } }
     .search-bar {
       width: 100%;
       background: var(--card);
@@ -499,14 +320,8 @@
 <div class="hero">
   <div class="hero-glow"></div>
   <div class="hero-tag">🌍 Afrique · Data · Tech · IA</div>
-  <h1>
-    Les meilleures offres
-    <span class="line2">Data en Afrique</span>
-  </h1>
-  <p>
-    Des opportunités sélectionnées en Data Science, Analytics, IA et Tech
-    pour les talents africains — chaque semaine, gratuitement.
-  </p>
+  <h1>Les meilleures offres <span class="line2">Data en Afrique</span></h1>
+  <p>Des opportunités sélectionnées en Data Science, Analytics, IA et Tech pour les talents africains — chaque semaine, gratuitement.</p>
   <div class="hero-btns">
     <a href="#offres" class="btn btn-primary">📊 Voir les offres</a>
     <a href="#rejoindre" class="btn btn-outline">🔔 S'abonner aux alertes</a>
@@ -514,31 +329,174 @@
 </div>
 
 <div class="stats">
-  <div class="stat-item">
-    <div class="stat-num" id="countJobs">0</div>
-    <div class="stat-label">Offres actives</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">15+</div>
-    <div class="stat-label">Pays couverts</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">100%</div>
-    <div class="stat-label">Gratuit</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">Hebdo</div>
-    <div class="stat-label">Mise à jour</div>
-  </div>
+  <div class="stat-item"><div class="stat-num" id="countJobs">0</div><div class="stat-label">Offres actives</div></div>
+  <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Pays couverts</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Gratuit</div></div>
+  <div class="stat-item"><div class="stat-num">Hebdo</div><div class="stat-label">Mise à jour</div></div>
 </div>
 
 <section id="offres">
   <div class="section-label">// Opportunités</div>
   <h2 class="section-title">Offres du moment</h2>
   <p class="section-desc">Sélectionnées manuellement parmi les meilleures organisations opérant en Afrique.</p>
-
   <input class="search-bar" type="text" id="searchInput" placeholder="🔍  Rechercher un poste, une ville, une organisation..." />
-
   <div class="filter-bar">
     <button class="filter-btn active" onclick="filterJobs('all', this)">Tout</button>
-    <button class="filter-btn" onclick="filterJobs
+    <button class="filter-btn" onclick="filterJobs('analytics', this)">Data Analytics / BI</button>
+    <button class="filter-btn" onclick="filterJobs('ingenierie', this)">Data Engineering</button>
+    <button class="filter-btn" onclick="filterJobs('data-science', this)">Data Science</button>
+    <button class="filter-btn" onclick="filterJobs('ia', this)">IA / Machine Learning</button>
+    <button class="filter-btn" onclick="filterJobs('meal', this)">Monitoring and Evaluation</button>
+    <button class="filter-btn" onclick="filterJobs('research', this)">Research</button>
+    <button class="filter-btn" onclick="filterJobs('remote', this)">🌐 Remote</button>
+  </div>
+  <div class="jobs-grid" id="jobsGrid"></div>
+</section>
+
+<section id="rejoindre">
+  <div class="section-label">// Communauté</div>
+  <h2 class="section-title">Rejoignez la communauté</h2>
+  <p class="section-desc">Suivez-nous sur vos plateformes préférées pour ne rater aucune opportunité.</p>
+  <div class="channels-grid">
+    <div class="channel-card"><div class="channel-icon">💬</div><div class="channel-name">WhatsApp Channel</div><div class="channel-desc">Alertes instantanées dès qu'une nouvelle offre est publiée.</div><a href="VOTRE_LIEN_WHATSAPP" class="btn btn-outline" style="display:inline-flex">Rejoindre →</a></div>
+    <div class="channel-card"><div class="channel-icon">📘</div><div class="channel-name">Page Facebook</div><div class="channel-desc">Actualités, conseils carrière et offres partagés quotidiennement.</div><a href="VOTRE_LIEN_FACEBOOK" class="btn btn-outline" style="display:inline-flex">Suivre →</a></div>
+    <div class="channel-card"><div class="channel-icon">💼</div><div class="channel-name">LinkedIn</div><div class="channel-desc">Offres vérifiées et contenu professionnel pour booster ta carrière.</div><a href="VOTRE_LIEN_LINKEDIN" class="btn btn-outline" style="display:inline-flex">Connecter →</a></div>
+    <div class="channel-card"><div class="channel-icon">📧</div><div class="channel-name">Newsletter</div><div class="channel-desc">Récap hebdomadaire des meilleures offres directement dans ta boîte mail.</div><a href="VOTRE_LIEN_NEWSLETTER" class="btn btn-outline" style="display:inline-flex">S'inscrire →</a></div>
+  </div>
+</section>
+
+<section id="soumettre">
+  <div class="submit-box">
+    <div class="section-label">// Recruteurs & RH</div>
+    <h3>Vous recrutez en Afrique ?</h3>
+    <p>Partagez votre offre gratuitement avec notre communauté de talents Data & Tech africains.<br>Envoyez les détails à notre email et nous la publierons sous 48h.</p>
+    <a href="mailto:datajobsafrica@proton.me?subject=Soumission%20d'offre%20d'emploi" class="btn btn-primary">📩 Soumettre une offre</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">DataJobs.Africa</span>
+  Une initiative indépendante pour les talents africains de la Data & Tech.<br>
+  Mis à jour chaque semaine · 100% gratuit · 🌍 Pan-africain<br><br>
+  <a href="mailto:datajobsafrica@proton.me" style="color:var(--accent);text-decoration:none;">datajobsafrica@proton.me</a>
+</footer>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  let JOBS = [];
+  let currentFilter = 'all';
+
+  fetch('offres.json')
+    .then(response => response.json())
+    .then(data => {
+      JOBS = data;
+      renderJobs(JOBS);
+      document.getElementById('countJobs').textContent = JOBS.length;
+      animateCount(document.getElementById('countJobs'), JOBS.length);
+    })
+    .catch(error => {
+      console.error('Erreur chargement offres:', error);
+      document.getElementById('jobsGrid').innerHTML = '<div style="padding:2rem;text-align:center;">⚠️ Aucune offre disponible pour le moment.</div>';
+    });
+
+  function renderJobs(data) {
+    const grid = document.getElementById('jobsGrid');
+    grid.innerHTML = '';
+    if (data.length === 0) {
+      grid.innerHTML = `<div style="padding:3rem;text-align:center;color:var(--muted);">Aucune offre pour ce filtre pour le moment.</div>`;
+      return;
+    }
+    data.forEach(job => {
+      const card = document.createElement('div');
+      card.className = 'job-card';
+      
+      // Construction des métas
+      const regionTag = job.region ? `<span class="tag tag-region">🌍 ${job.region}</span>` : '';
+      const deadlineTag = job.deadline && job.deadline !== "Non spécifiée" ? `<span class="tag tag-deadline">📅 ${job.deadline}</span>` : '';
+      const salaryTag = job.salary && job.salary !== "Non spécifié" ? `<span class="tag tag-salary">💰 ${job.salary}</span>` : '';
+      const durationTag = job.duration && job.duration !== "CDI" ? `<span class="tag tag-duration">⏱️ ${job.duration}</span>` : '';
+      
+      // Lien postuler (URL ou texte)
+      const applyLink = job.link && job.link.startsWith('http')
+        ? `<a href="${job.link}" class="job-apply" target="_blank" rel="noopener">Postuler →</a>`
+        : `<span class="job-apply" style="cursor:default; color:var(--accent);">📧 ${job.link || 'Non spécifié'}</span>`;
+      
+      // Lien PDF (si présent)
+      const pdfHtml = job.pdfLink && job.pdfLink !== ""
+        ? `<a href="${job.pdfLink}" class="job-apply" target="_blank" rel="noopener" style="margin-left: 1rem;">📄 PDF →</a>`
+        : `<span class="job-apply" style="cursor:default; color:var(--muted); margin-left: 1rem;">📄 Unavailable</span>`;
+      
+      card.innerHTML = `
+        <div>
+          <div class="job-meta">
+            ${job.isNew ? '<span class="tag tag-new">🔥 Nouveau</span>' : ''}
+            <span class="tag tag-type">${job.type?.replace('-', ' ') || job.type || 'Non spécifié'}</span>
+            <span class="tag tag-loc">📍 ${job.location || job.country || 'Afrique'}</span>
+            <span class="tag tag-level">${job.level || 'Non spécifié'}</span>
+            ${job.remote ? '<span class="tag tag-remote">🌐 Remote</span>' : ''}
+            ${regionTag}
+            ${deadlineTag}
+            ${salaryTag}
+            ${durationTag}
+          </div>
+          <div class="job-title">${job.title}</div>
+          <div class="job-company">${job.company}</div>
+          <div>
+            ${applyLink}
+            ${pdfHtml}
+          </div>
+        </div>
+        <div class="job-date">${job.date || 'Ajout récent'}</div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function filterJobs(type, btn) {
+    currentFilter = type;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+  }
+
+  function applyFilters() {
+    const search = document.getElementById('searchInput').value.toLowerCase();
+    let filtered = JOBS;
+    if (currentFilter !== 'all') {
+      if (currentFilter === 'remote') {
+        filtered = filtered.filter(j => j.remote);
+      } else {
+        filtered = filtered.filter(j => j.type === currentFilter);
+      }
+    }
+    if (search) {
+      filtered = filtered.filter(j =>
+        j.title.toLowerCase().includes(search) ||
+        j.company.toLowerCase().includes(search) ||
+        (j.location && j.location.toLowerCase().includes(search)) ||
+        (j.country && j.country.toLowerCase().includes(search))
+      );
+    }
+    renderJobs(filtered);
+  }
+
+  document.getElementById('searchInput').addEventListener('input', applyFilters);
+
+  function animateCount(el, target, duration = 1000) {
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) { el.textContent = target; clearInterval(timer); return; }
+      el.textContent = Math.floor(start);
+    }, 16);
+  }
+
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('scrollTop');
+    btn.style.display = window.scrollY > 500 ? 'flex' : 'none';
+  });
+</script>
+</body>
+</html>
