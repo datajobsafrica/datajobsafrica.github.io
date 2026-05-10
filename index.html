@@ -245,7 +245,7 @@
     .tag-duration { background: rgba(101,92,92,0.1); color: var(--muted); }
     .job-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.3rem; color: var(--text); }
 .job-company { color: #000000; font-size: 0.85rem; font-weight: bold; }
-.job-card { font-family: 'Times New Roman', Times, serif !important; }
+.job-card { font-family: 'Lato', Times, serif !important; }
 .job-apply {
   display: inline-flex;
   align-items: center;
@@ -427,9 +427,9 @@
         : `<span class="job-apply" style="cursor:default; color:var(--accent);">📧 ${job.link || 'Non spécifié'}</span>`;
       
       // Lien PDF (si présent)
-      const pdfHtml = job.pdfLink && job.pdfLink !== ""
-        ? `<a href="${job.pdfLink}" class="job-apply" target="_blank" rel="noopener" style="margin-left: 1rem;">📄 PDF →</a>`
-        : `<span class="job-apply" style="cursor:default; color:var(--muted); margin-left: 1rem;">📄 Unavailable</span>`;
+const pdfHtml = job.pdfLink && job.pdfLink !== ""
+  ? `<a href="${job.pdfLink}" class="job-apply" target="_blank" rel="noopener" style="margin-left: 1rem;">📄 Lien vers le PDF</a>`
+  : `<span class="job-apply" style="cursor:default; color:var(--muted); margin-left: 1rem;">📄 Unavailable</span>`;
       
       card.innerHTML = `
         <div>
