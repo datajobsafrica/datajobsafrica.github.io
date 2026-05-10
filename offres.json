@@ -20,3 +20,42 @@
     "source": "manuel_admin"
   }
 ]
+
+[
+  {
+    "id": 1778379750866,
+    "title": "Consultant, MLE Strategy",
+    "company": "Evidence Action",
+    "location": "Global",
+    "type": "ingenierie",
+    "level": "Non spécifié",
+    "remote": true,
+    "isNew": true,
+    "date": "10/05/2026",
+    "link": "https://apply.workable.com/evidence-action/j/BDF46B1E50/",
+    "source": "manuel_admin"
+  }
+]
+
+[
+  {
+    "id": 1778383188876,
+    "title": "Research Analyst",
+    "company": "BRIDGE SECURITIES",
+    "region": "Afrique de l'Ouest",
+    "location": "Abidjan, Côte d'Ivoire",
+    "country": "Côte d'Ivoire",
+    "city": "Abidjan",
+    "type": "research",
+    "level": "Junior",
+    "deadline": "2026-05-21",
+    "salary": "Non spécifié",
+    "duration": "CDI",
+    "remote": false,
+    "isNew": true,
+    "date": "10/05/2026",
+    "link": "Veuillez envoyer vos candidatures à l’adresse ciaprès rh@bridge-securities.com",
+    "pdfLink": "https://media.licdn.com/dms/document/media/v2/D561FAQGyD8U9VCigjw/feedshare-document-sanitized-pdf/B56Z4IOl5tGsBA-/0/1778254505033?e=1778864400&v=beta&t=qZilfOEf6WnDl8IZmMmyGklgpnsHskL571K4xMnhUnU",
+    "source": "manuel_admin"
+  }
+]
