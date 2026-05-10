@@ -240,6 +240,7 @@
     .tag-remote { background: rgba(255,92,92,0.1); color: var(--danger); }
     .tag-new { background: var(--accent); color: #000; font-weight: 700; animation: pulse 2s ease infinite; }
     .tag-expired { background: #e65c5c; color: white; font-weight: 700; animation: pulse 2s ease infinite; }
+    .tag-disclaimer { background: #f0ad4e; color: #000; font-weight: 700; animation: pulse 2s ease infinite; }
     .tag-region { background: rgba(0,232,122,0.1); color: var(--accent); }
     .tag-deadline { background: rgba(0,162,255,0.1); color: var(--accent3); }
     .tag-salary { background: rgba(255,184,0,0.1); color: var(--accent2); }
@@ -304,18 +305,14 @@
     }
     #scrollTop:hover { transform: translateY(-3px); }
     
-    /* Email et lien candidature : bleus */
     .job-apply[href^="mailto"] { color: #1e4a6b !important; text-decoration: underline; }
     .job-apply[href^="http"] { color: #1e4a6b !important; text-decoration: underline; }
-    /* Instructions : noir */
     .job-apply-instruction { color: #000000 !important; cursor: default; }
-    /* PDF label et link */
     .pdf-label { color: #000000 !important; font-weight: normal; }
     .pdf-link { color: #8B0000 !important; font-weight: bold; }
     .pdf-unavailable { color: #8B0000 !important; font-weight: bold; }
     .tag, .job-meta .tag { font-weight: bold !important; }
     
-    /* Accordéon pour la description */
     .job-description-wrapper {
       margin-top: 1rem;
       border-top: 1px solid var(--border);
@@ -480,7 +477,7 @@
       card.className = 'job-card';
       
       let isExpired = false;
-      if (job.deadline && job.deadline !== "Non spécifiée" && job.deadline !== "Non spécifiée") {
+      if (job.deadline && job.deadline !== "Non spécifiée") {
         const [year, month, day] = job.deadline.split('-');
         const deadlineDate = new Date(year, month-1, day);
         if (deadlineDate < today) isExpired = true;
@@ -493,6 +490,7 @@
       
       const newBadge = job.isNew ? '<span class="tag tag-new">🔥 Nouveau</span>' : '';
       const expiredBadge = isExpired ? '<span class="tag tag-expired">⏰ Expiré</span>' : '';
+      const disclaimerBadge = '<span class="tag tag-disclaimer">⚠️ Auto-generated summary</span>';
       
       let instructionsHtml = '';
       if (job.instructions && job.instructions.trim() !== '') {
@@ -518,7 +516,6 @@
       
       const descId = `desc-${job.id || index}`;
       let descriptionHtml = '';
-      // Afficher le bouton uniquement si summary existe et n'est pas vide
       if (job.summary && job.summary.trim() !== '') {
         descriptionHtml = `
           <div class="job-description-wrapper">
@@ -533,6 +530,7 @@
           <div class="job-meta">
             ${newBadge}
             ${expiredBadge}
+            ${disclaimerBadge}
             <span class="tag tag-type">${job.type?.replace('-', ' ') || job.type || 'Non spécifié'}</span>
             <span class="tag tag-loc">📍 ${job.location || job.country || 'Afrique'}</span>
             <span class="tag tag-level">${job.level || 'Non spécifié'}</span>
