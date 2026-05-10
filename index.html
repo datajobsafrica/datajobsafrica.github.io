@@ -529,17 +529,17 @@
       // Description avec accordéon (version qui FORCE l’interprétation HTML)
       const descId = `desc-${job.id || index}`;
       let descriptionHtml = '';
-      if (job.description && job.description.trim() !== '') {
+      if (job.summary && job.summary.trim() !== '') {
         descriptionHtml = `
           <div class="job-description-wrapper">
             <button class="desc-toggle" onclick="toggleDescription(this, '${descId}')">▶ Voir la description</button>
-            <div id="${descId}" class="desc-content" style="display:none;">${job.description}</div>
+            <div id="${descId}" class="desc-content" style="display:none;">${job.summary}</div>
           </div>
         `;
         // On force l’interprétation du HTML après l’insertion
         setTimeout(() => {
           const descDiv = document.getElementById(descId);
-          if (descDiv) descDiv.innerHTML = job.description;
+          if (descDiv) descDiv.innerHTML = job.summary;
         }, 0);
       }
       
