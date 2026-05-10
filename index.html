@@ -245,7 +245,6 @@
     .tag-duration { background: rgba(101,92,92,0.1); color: var(--muted); }
     .job-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.3rem; color: var(--text); }
 .job-company { color: #000000; font-size: 0.85rem; font-weight: bold; }
-.job-card { font-family: 'Lato', Times, serif !important; }
 .job-apply {
   display: inline-flex;
   align-items: center;
@@ -307,10 +306,9 @@
       transition: transform 0.2s;
     }
     #scrollTop:hover { transform: translateY(-3px); }
-	/* Email dans les instructions : bleu */
-.job-apply[style*="cursor:default"] a,
-.job-apply[style*="cursor:default"] a:link,
-.job-apply[style*="cursor:default"] a:visited {
+	
+/* Email dans les instructions : bleu */
+.job-apply[href*="mailto"] {
   color: #1e4a6b !important;
   text-decoration: underline;
 }
@@ -436,15 +434,20 @@ a.job-apply[href*="media.licdn"] {
       const salaryTag = job.salary && job.salary !== "Non spécifié" ? `<span class="tag tag-salary">💰 ${job.salary}</span>` : '';
       const durationTag = job.duration && job.duration !== "CDI" ? `<span class="tag tag-duration">⏱️ ${job.duration}</span>` : '';
       
-      // Lien postuler (URL ou texte)
-      const applyLink = job.link && job.link.startsWith('http')
-        ? `<a href="${job.link}" class="job-apply" target="_blank" rel="noopener">Postuler →</a>`
-        : `<span class="job-apply" style="cursor:default; color:var(--accent);">📧 ${job.link || 'Non spécifié'}</span>`;
+      // Lien postuler (URL ou email ou texte)
+      let applyLink;
+      if (job.link && job.link.startsWith('http')) {
+        applyLink = `<a href="${job.link}" class="job-apply" target="_blank" rel="noopener">Postuler →</a>`;
+      } else if (job.link && job.link.includes('@')) {
+        applyLink = `<a href="mailto:${job.link}" class="job-apply" target="_blank" rel="noopener">📧 ${job.link}</a>`;
+      } else {
+        applyLink = `<span class="job-apply" style="cursor:default; color:var(--accent);">📧 ${job.link || 'Non spécifié'}</span>`;
+      }
       
       // Lien PDF (si présent)
-const pdfHtml = job.pdfLink && job.pdfLink !== ""
-  ? `<a href="${job.pdfLink}" class="job-apply" target="_blank" rel="noopener" style="margin-left: 1rem;">📄 Lien vers le PDF</a>`
-  : `<span class="job-apply" style="cursor:default; color:var(--muted); margin-left: 1rem;">📄 Unavailable</span>`;
+      const pdfHtml = job.pdfLink && job.pdfLink !== ""
+        ? `<a href="${job.pdfLink}" class="job-apply" target="_blank" rel="noopener" style="margin-left: 1rem;">📄 Lien vers le PDF</a>`
+        : `<span class="job-apply" style="cursor:default; color:var(--muted); margin-left: 1rem;">📄 Unavailable</span>`;
       
       card.innerHTML = `
         <div>
