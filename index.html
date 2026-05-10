@@ -432,9 +432,9 @@
   let JOBS = [];
   let currentFilter = 'all';
 
-  // Unique visitor counter (increments for each new visitor)
+  // Unique visitor counter - FIXED (no NaN)
   let visitorCount = localStorage.getItem('datajobs_visitor_count');
-  if (visitorCount === null) {
+  if (visitorCount === null || isNaN(parseInt(visitorCount))) {
     visitorCount = 100;
   } else {
     visitorCount = parseInt(visitorCount) + 1;
