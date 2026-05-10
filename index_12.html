@@ -694,81 +694,95 @@
   // 📋 DONNÉES DES OFFRES
   // Pour ajouter une offre, copie un objet et modifie les champs
   // ==============================
-  const JOBS = [
-    {
-      id: 1,
-      title: "Data Scientist Senior",
-      company: "ONU Femmes — Nairobi, Kenya",
-      type: "data-science",
-      location: "Nairobi, Kenya",
-      level: "Senior",
-      remote: false,
-      isNew: true,
-      date: "Ajouté le 08 mai 2025",
-      link: "#"
-    },
-    {
-      id: 2,
-      title: "Analyste BI & Données",
-      company: "Banque Mondiale — Dakar, Sénégal",
-      type: "analytics",
-      location: "Dakar, Sénégal",
-      level: "Junior/Mid",
-      remote: false,
-      isNew: true,
-      date: "Ajouté le 07 mai 2025",
-      link: "#"
-    },
-    {
-      id: 3,
-      title: "Machine Learning Engineer",
-      company: "Jumia — Lagos, Nigeria",
-      type: "ia",
-      location: "Lagos, Nigeria",
-      level: "Mid",
-      remote: true,
-      isNew: false,
-      date: "Ajouté le 05 mai 2025",
-      link: "#"
-    },
-    {
-      id: 4,
-      title: "Data Engineer",
-      company: "MTN Group — Johannesburg, SA",
-      type: "ingenierie",
-      location: "Johannesburg, SA",
-      level: "Senior",
-      remote: false,
-      isNew: false,
-      date: "Ajouté le 04 mai 2025",
-      link: "#"
-    },
-    {
-      id: 5,
-      title: "AI Research Associate",
-      company: "Institut Pasteur — Abidjan, CI",
-      type: "ia",
-      location: "Abidjan, CI",
-      level: "Recherche",
-      remote: false,
-      isNew: false,
-      date: "Ajouté le 03 mai 2025",
-      link: "#"
-    },
-    {
-      id: 6,
-      title: "Data Analyst — Santé Publique",
-      company: "OMS Bureau Afrique — Brazzaville, Congo",
-      type: "analytics",
-      location: "Brazzaville, Congo",
-      level: "Mid",
-      remote: false,
-      isNew: false,
-      date: "Ajouté le 02 mai 2025",
-      link: "#"
-    }
-  ];
+  // const JOBS = [
+  //   {
+  //     id: 1,
+  //     title: "Data Scientist Senior",
+  //     company: "ONU Femmes — Nairobi, Kenya",
+  //     type: "data-science",
+  //     location: "Nairobi, Kenya",
+  //     level: "Senior",
+  //     remote: false,
+  //     isNew: true,
+  //     date: "Ajouté le 08 mai 2025",
+  //     link: "#"
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Analyste BI & Données",
+  //     company: "Banque Mondiale — Dakar, Sénégal",
+  //     type: "analytics",
+  //     location: "Dakar, Sénégal",
+  //     level: "Junior/Mid",
+  //     remote: false,
+  //     isNew: true,
+  //     date: "Ajouté le 07 mai 2025",
+  //     link: "#"
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Machine Learning Engineer",
+  //     company: "Jumia — Lagos, Nigeria",
+  //     type: "ia",
+  //     location: "Lagos, Nigeria",
+  //     level: "Mid",
+  //     remote: true,
+  //     isNew: false,
+  //     date: "Ajouté le 05 mai 2025",
+  //     link: "#"
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Data Engineer",
+  //     company: "MTN Group — Johannesburg, SA",
+  //     type: "ingenierie",
+  //     location: "Johannesburg, SA",
+  //     level: "Senior",
+  //     remote: false,
+  //     isNew: false,
+  //     date: "Ajouté le 04 mai 2025",
+  //     link: "#"
+  //   },
+  //   {
+  //     id: 5,
+  //     title: "AI Research Associate",
+  //     company: "Institut Pasteur — Abidjan, CI",
+  //     type: "ia",
+  //     location: "Abidjan, CI",
+  //     level: "Recherche",
+  //     remote: false,
+  //     isNew: false,
+  //     date: "Ajouté le 03 mai 2025",
+  //     link: "#"
+  //   },
+  //   {
+  //     id: 6,
+  //     title: "Data Analyst — Santé Publique",
+  //     company: "OMS Bureau Afrique — Brazzaville, Congo",
+  //     type: "analytics",
+  //     location: "Brazzaville, Congo",
+  //     level: "Mid",
+  //     remote: false,
+  //     isNew: false,
+  //     date: "Ajouté le 02 mai 2025",
+  //     link: "#"
+  //   }
+  // ];
 
+  let JOBS = [];
+
+fetch('offres.json')
+  .then(response => response.json())
+  .then(data => {
+    JOBS = data;
+    renderJobs(JOBS);
+    document.getElementById('countJobs').textContent = JOBS.length;
+  })
+  .catch(error => {
+    console.error('Erreur chargement offres:', error);
+    document.getElementById('jobsGrid').innerHTML = '<div style="padding:2rem;text-align:center;">⚠️ Aucune offre disponible pour le moment.</div>';
+  });
+  
   let currentFilter = 'all';
 
   function renderJobs(data) {
