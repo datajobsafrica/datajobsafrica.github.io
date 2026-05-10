@@ -432,16 +432,14 @@
   let JOBS = [];
   let currentFilter = 'all';
 
-  // Visitor counter: 100 base + real visits
-  let visitorCount = 100;
-  const storageKey = 'datajobs_visitor_count';
-  const hasVisited = localStorage.getItem(storageKey);
-  
-  if (!hasVisited) {
-    visitorCount += 1;
-    localStorage.setItem(storageKey, 'true');
+  // Unique visitor counter (increments for each new visitor)
+  let visitorCount = localStorage.getItem('datajobs_visitor_count');
+  if (visitorCount === null) {
+    visitorCount = 100;
+  } else {
+    visitorCount = parseInt(visitorCount) + 1;
   }
-  
+  localStorage.setItem('datajobs_visitor_count', visitorCount);
   document.getElementById('visitorCount').textContent = visitorCount;
 
   function trierParDate(offres) {
