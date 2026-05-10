@@ -486,7 +486,7 @@
       // 3. LIEN CANDIDATURE (bleu)
       let applyLinkHtml = '';
       if (job.applyLink && job.applyLink.trim() !== '') {
-        applyLinkHtml = `<a href="${job.applyLink}" class="job-apply" target="_blank" rel="noopener" style="margin-top:0.5rem;">🔗 Postuler →</a>`;
+        applyLinkHtml = `<a href="${job.applyLink}" class="job-apply" target="_blank" rel="noopener" style="margin-top:0.5rem;">🔗 Apply →</a>`;
       }
       
       // 4. PDF (noir + bordeaux)
@@ -497,17 +497,21 @@
         pdfHtml = `<div style="margin-top:0.5rem;"><span class="pdf-label">PDF: </span><span class="job-apply pdf-unavailable" style="cursor:default;">Unavailable</span></div>`;
       }
       
-      // Description avec accordéon
+      // Description avec accordéon (version qui FORCE l’interprétation HTML)
       const descId = `desc-${job.id || index}`;
       let descriptionHtml = '';
       if (job.description && job.description.trim() !== '') {
         descriptionHtml = `
           <div class="job-description-wrapper">
             <button class="desc-toggle" onclick="toggleDescription(this, '${descId}')">▶ Voir la description</button>
-            <div id="${descId}" class="desc-content" style="display:none;"></div>
-		<script>document.getElementById('${descId}').innerHTML = ${JSON.stringify(job.description)};</script>
+            <div id="${descId}" class="desc-content" style="display:none;">${job.description}</div>
           </div>
         `;
+        // On force l’interprétation du HTML après l’insertion
+        setTimeout(() => {
+          const descDiv = document.getElementById(descId);
+          if (descDiv) descDiv.innerHTML = job.description;
+        }, 0);
       }
       
       card.innerHTML = `
@@ -586,4 +590,3 @@
 </script>
 </body>
 </html>
-
