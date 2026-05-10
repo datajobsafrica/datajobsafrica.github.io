@@ -514,13 +514,28 @@
         pdfHtml = `<div style="margin-top:0.5rem;"><span class="pdf-label">PDF: </span><span class="job-apply pdf-unavailable" style="cursor:default;">Unavailable</span></div>`;
       }
       
+      // Disclaimer avec lien full job posting
+      let fullJobHtml = '';
+      if (job.fullJobPosting && job.fullJobPosting.trim() !== '') {
+        fullJobHtml = `
+          <div style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--muted);">
+            This job summary was generated automatically. For the complete and authoritative job description, 
+            please view the 
+            <a href="${job.fullJobPosting}" target="_blank" rel="noopener" style="color: var(--accent);">full job posting</a>.
+          </div>
+        `;
+      }
+      
       const descId = `desc-${job.id || index}`;
       let descriptionHtml = '';
       if (job.summary && job.summary.trim() !== '') {
         descriptionHtml = `
           <div class="job-description-wrapper">
             <button class="desc-toggle" onclick="toggleDescription(this, '${descId}')">▶ Voir la description</button>
-            <div id="${descId}" class="desc-content" style="display:none;">${job.summary}</div>
+            <div id="${descId}" class="desc-content" style="display:none;">
+              ${job.summary}
+              ${fullJobHtml}
+            </div>
           </div>
         `;
       }
