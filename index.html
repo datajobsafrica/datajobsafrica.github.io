@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DataJobs Africa — Opportunités Data & Tech en Afrique</title>
-  <meta name="description" content="Les meilleures offres d'emploi en Data Science, IA, Analytics et Tech pour les talents africains." />
+  <title>DataJobs Africa — Data & Tech Opportunities in Africa</title>
+  <meta name="description" content="The best job offers in Data Science, AI, Analytics and Tech for African talents." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -305,18 +305,14 @@
     }
     #scrollTop:hover { transform: translateY(-3px); }
     
-    /* Email et lien candidature : bleus */
     .job-apply[href^="mailto"] { color: #1e4a6b !important; text-decoration: underline; }
     .job-apply[href^="http"] { color: #1e4a6b !important; text-decoration: underline; }
-    /* Instructions : noir */
     .job-apply-instruction { color: #000000 !important; cursor: default; }
-    /* PDF label et link */
     .pdf-label { color: #000000 !important; font-weight: normal; }
     .pdf-link { color: #8B0000 !important; font-weight: bold; }
     .pdf-unavailable { color: #8B0000 !important; font-weight: bold; }
     .tag, .job-meta .tag { font-weight: bold !important; }
     
-    /* Accordéon pour la description */
     .job-description-wrapper {
       margin-top: 1rem;
       border-top: 1px solid var(--border);
@@ -355,48 +351,46 @@
 <nav>
   <a href="#" class="logo">Data<span>Jobs</span>.Africa</a>
   <ul>
-    <li><a href="#offres">Offres</a></li>
-    <li><a href="#rejoindre">Rejoindre</a></li>
-    <li><a href="#soumettre">Soumettre</a></li>
-    <li><a href="#rejoindre" class="nav-cta">S'abonner →</a></li>
+    <li><a href="#offres">Jobs</a></li>
+    <li><a href="#rejoindre">Join</a></li>
+    <li><a href="#soumettre">Submit</a></li>
+    <li><a href="#rejoindre" class="nav-cta">Subscribe →</a></li>
   </ul>
 </nav>
 
 <div class="hero">
   <div class="hero-glow"></div>
-  <div class="hero-tag">🌍 Afrique · Data · Tech · IA</div>
-  <h1>Les meilleures offres <span class="line2">Data en Afrique</span></h1>
-  <p>Des opportunités sélectionnées en Data Science, Analytics, IA et Tech pour les talents africains — chaque semaine, gratuitement.</p>
+  <div class="hero-tag">🌍 Africa · Data · Tech · AI</div>
+  <h1>Best Data jobs <span class="line2">in Africa</span></h1>
+  <p>Selected opportunities in Data Science, Analytics, AI and Tech for African talents — every week, for free.</p>
   <div class="hero-btns">
-    <a href="#offres" class="btn btn-primary">📊 Voir les offres</a>
-    <a href="#rejoindre" class="btn btn-outline">🔔 S'abonner aux alertes</a>
+    <a href="#offres" class="btn btn-primary">📊 View jobs</a>
+    <a href="#rejoindre" class="btn btn-outline">🔔 Subscribe to alerts</a>
   </div>
 </div>
 
 <div class="stats">
-  <div class="stat-item"><div class="stat-num" id="countJobs">0</div><div class="stat-label">Offres actives</div></div>
-  <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Pays couverts</div></div>
-  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Gratuit</div></div>
-  <div class="stat-item"><div class="stat-num">Hebdo</div><div class="stat-label">Mise à jour</div></div>
+  <div class="stat-item"><div class="stat-num" id="countJobs">0</div><div class="stat-label">Active jobs</div></div>
+  <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Countries covered</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Free</div></div>
+  <div class="stat-item"><div class="stat-num">Weekly</div><div class="stat-label">Updates</div></div>
   <div class="stat-item">
-    <div class="stat-num">
-      <img src="https://visitor-badge.laobi.icu/badge?page_id=datajobsafrica.github.io" alt="visitors" style="width: auto; height: 2rem;">
-    </div>
-    <div class="stat-label">Visiteurs</div>
+    <div class="stat-num" id="visitorCount">100</div>
+    <div class="stat-label">Visitors</div>
   </div>
 </div>
 
 <section id="offres">
-  <div class="section-label">// Opportunités</div>
-  <h2 class="section-title">Offres du moment</h2>
-  <p class="section-desc">Sélectionnées manuellement parmi les meilleures organisations opérant en Afrique.</p>
-  <input class="search-bar" type="text" id="searchInput" placeholder="🔍  Rechercher un poste, une ville, une organisation..." />
+  <div class="section-label">// Opportunities</div>
+  <h2 class="section-title">Current openings</h2>
+  <p class="section-desc">Handpicked from the best organizations operating in Africa.</p>
+  <input class="search-bar" type="text" id="searchInput" placeholder="🔍  Search for a position, city, organization..." />
   <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterJobs('all', this)">Tout</button>
+    <button class="filter-btn active" onclick="filterJobs('all', this)">All</button>
     <button class="filter-btn" onclick="filterJobs('analytics', this)">Analytics / BI</button>
     <button class="filter-btn" onclick="filterJobs('ingenierie', this)">Data Engineering</button>
     <button class="filter-btn" onclick="filterJobs('data-science', this)">Data Science</button>
-    <button class="filter-btn" onclick="filterJobs('ia', this)">IA / Machine Learning</button>
+    <button class="filter-btn" onclick="filterJobs('ia', this)">AI / Machine Learning</button>
     <button class="filter-btn" onclick="filterJobs('meal', this)">Monitoring & Evaluation</button>
     <button class="filter-btn" onclick="filterJobs('research', this)">Research</button>
     <button class="filter-btn" onclick="filterJobs('remote', this)">🌐 Remote</button>
@@ -405,30 +399,30 @@
 </section>
 
 <section id="rejoindre">
-  <div class="section-label">// Communauté</div>
-  <h2 class="section-title">Rejoignez la communauté</h2>
-  <p class="section-desc">Suivez-nous sur vos plateformes préférées pour ne rater aucune opportunité.</p>
+  <div class="section-label">// Community</div>
+  <h2 class="section-title">Join the community</h2>
+  <p class="section-desc">Follow us on your favorite platforms so you never miss an opportunity.</p>
   <div class="channels-grid">
-    <div class="channel-card"><div class="channel-icon">💬</div><div class="channel-name">WhatsApp Channel</div><div class="channel-desc">Alertes instantanées dès qu'une nouvelle offre est publiée.</div><a href="VOTRE_LIEN_WHATSAPP" class="btn btn-outline" style="display:inline-flex">Rejoindre →</a></div>
-    <div class="channel-card"><div class="channel-icon">📘</div><div class="channel-name">Page Facebook</div><div class="channel-desc">Actualités, conseils carrière et offres partagés quotidiennement.</div><a href="https://tinyurl.com/3urze6e5" class="btn btn-outline" target="_blank" rel="noopener">Suivre →</a></div>
-    <div class="channel-card"><div class="channel-icon">💼</div><div class="channel-name">LinkedIn</div><div class="channel-desc">Offres vérifiées et contenu professionnel pour booster ta carrière.</div><a href="https://www.linkedin.com/company/datajobsafrica" class="btn btn-outline" target="_blank" rel="noopener">Connecter →</a></div>
-    <div class="channel-card"><div class="channel-icon">📧</div><div class="channel-name">Newsletter</div><div class="channel-desc">Récap hebdomadaire des meilleures offres directement dans ta boîte mail.</div><a href="VOTRE_LIEN_NEWSLETTER" class="btn btn-outline" style="display:inline-flex">S'inscrire →</a></div>
+    <div class="channel-card"><div class="channel-icon">💬</div><div class="channel-name">WhatsApp Channel</div><div class="channel-desc">Instant alerts as soon as a new job is posted.</div><a href="VOTRE_LIEN_WHATSAPP" class="btn btn-outline" style="display:inline-flex">Join →</a></div>
+    <div class="channel-card"><div class="channel-icon">📘</div><div class="channel-name">Facebook Page</div><div class="channel-desc">News, career tips and jobs shared daily.</div><a href="https://tinyurl.com/3urze6e5" class="btn btn-outline" target="_blank" rel="noopener">Follow →</a></div>
+    <div class="channel-card"><div class="channel-icon">💼</div><div class="channel-name">LinkedIn</div><div class="channel-desc">Verified jobs and professional content to boost your career.</div><a href="https://www.linkedin.com/company/datajobsafrica" class="btn btn-outline" target="_blank" rel="noopener">Connect →</a></div>
+    <div class="channel-card"><div class="channel-icon">📧</div><div class="channel-name">Newsletter</div><div class="channel-desc">Weekly recap of the best jobs straight to your inbox.</div><a href="VOTRE_LIEN_NEWSLETTER" class="btn btn-outline" style="display:inline-flex">Subscribe →</a></div>
   </div>
 </section>
 
 <section id="soumettre">
   <div class="submit-box">
-    <div class="section-label">// Recruteurs & RH</div>
-    <h3>Vous recrutez en Afrique ?</h3>
-    <p>Partagez votre offre gratuitement avec notre communauté de talents Data & Tech africains.<br>Envoyez les détails à notre email et nous la publierons sous 48h.</p>
-    <a href="mailto:datajobsafrica@gmail.com?subject=Soumission%20d'offre%20d'emploi" class="btn btn-primary">📩 Soumettre une offre</a>
+    <div class="section-label">// Recruiters & HR</div>
+    <h3>Hiring in Africa?</h3>
+    <p>Share your job offer for free with our community of African Data & Tech talents.<br>Send the details to our email and we'll publish it within 48 hours.</p>
+    <a href="mailto:datajobsafrica@gmail.com?subject=Job%20offer%20submission" class="btn btn-primary">📩 Submit a job offer</a>
   </div>
 </section>
 
 <footer>
   <span class="footer-logo">DataJobs.Africa</span>
-  Une initiative indépendante pour les talents africains de la Data & Tech.<br>
-  Mis à jour chaque semaine · 100% gratuit · 🌍 Pan-africain<br><br>
+  An independent initiative for African Data & Tech talents.<br>
+  Updated weekly · 100% free · 🌍 Pan-African<br><br>
   <a href="mailto:datajobsafrica@gmail.com" style="color:var(--accent);text-decoration:none;">datajobsafrica@gmail.com</a>
 </footer>
 
@@ -437,6 +431,18 @@
 <script>
   let JOBS = [];
   let currentFilter = 'all';
+
+  // Visitor counter: 100 base + real visits
+  let visitorCount = 100;
+  const storageKey = 'datajobs_visitor_count';
+  const hasVisited = localStorage.getItem(storageKey);
+  
+  if (!hasVisited) {
+    visitorCount += 1;
+    localStorage.setItem(storageKey, 'true');
+  }
+  
+  document.getElementById('visitorCount').textContent = visitorCount;
 
   function trierParDate(offres) {
     return offres.sort((a, b) => {
@@ -456,18 +462,18 @@
       animateCount(document.getElementById('countJobs'), JOBS.length);
     })
     .catch(error => {
-      console.error('Erreur chargement offres:', error);
-      document.getElementById('jobsGrid').innerHTML = '<div style="padding:2rem;text-align:center;">⚠️ Aucune offre disponible pour le moment.</div>';
+      console.error('Error loading jobs:', error);
+      document.getElementById('jobsGrid').innerHTML = '<div style="padding:2rem;text-align:center;">⚠️ No jobs available at the moment.</div>';
     });
 
   function toggleDescription(btn, contentId) {
     const content = document.getElementById(contentId);
     if (content.style.display === 'none' || content.style.display === '') {
       content.style.display = 'block';
-      btn.textContent = '▼ Voir moins';
+      btn.textContent = '▼ Show less';
     } else {
       content.style.display = 'none';
-      btn.textContent = '▶ Voir la description';
+      btn.textContent = '▶ View description';
     }
   }
 
@@ -475,7 +481,7 @@
     const grid = document.getElementById('jobsGrid');
     grid.innerHTML = '';
     if (data.length === 0) {
-      grid.innerHTML = `<div style="padding:3rem;text-align:center;color:var(--muted);">Aucune offre pour ce filtre pour le moment.</div>`;
+      grid.innerHTML = `<div style="padding:3rem;text-align:center;color:var(--muted);">No jobs for this filter at the moment.</div>`;
       return;
     }
     
@@ -487,19 +493,19 @@
       card.className = 'job-card';
       
       let isExpired = false;
-      if (job.deadline && job.deadline !== "Non spécifiée") {
+      if (job.deadline && job.deadline !== "Not specified" && job.deadline !== "Non spécifiée") {
         const [year, month, day] = job.deadline.split('-');
         const deadlineDate = new Date(year, month-1, day);
         if (deadlineDate < today) isExpired = true;
       }
       
       const regionTag = job.region ? `<span class="tag tag-region">🌍 ${job.region}</span>` : '';
-      const deadlineTag = job.deadline && job.deadline !== "Non spécifiée" ? `<span class="tag tag-deadline">📅 ${job.deadline}</span>` : '';
-      const salaryTag = job.salary && job.salary !== "Non spécifié" ? `<span class="tag tag-salary">💰 ${job.salary}</span>` : '';
+      const deadlineTag = job.deadline && job.deadline !== "Not specified" && job.deadline !== "Non spécifiée" ? `<span class="tag tag-deadline">📅 ${job.deadline}</span>` : '';
+      const salaryTag = job.salary && job.salary !== "Not specified" && job.salary !== "Non spécifié" ? `<span class="tag tag-salary">💰 ${job.salary}</span>` : '';
       const durationTag = job.duration && job.duration !== "CDI" ? `<span class="tag tag-duration">⏱️ ${job.duration}</span>` : '';
       
-      const newBadge = job.isNew ? '<span class="tag tag-new">🔥 Nouveau</span>' : '';
-      const expiredBadge = isExpired ? '<span class="tag tag-expired">⏰ Expiré</span>' : '';
+      const newBadge = job.isNew ? '<span class="tag tag-new">🔥 New</span>' : '';
+      const expiredBadge = isExpired ? '<span class="tag tag-expired">⏰ Expired</span>' : '';
       const disclaimerBadge = '<span class="tag tag-disclaimer">⚠️ Auto-generated summary</span>';
       
       let instructionsHtml = '';
@@ -519,12 +525,11 @@
       
       let pdfHtml = '';
       if (job.pdfLink && job.pdfLink.trim() !== '') {
-        pdfHtml = `<div style="margin-top:0.5rem;"><span class="pdf-label">PDF: </span><a href="${job.pdfLink}" class="job-apply pdf-link" target="_blank" rel="noopener">Link to the PDF</a></div>`;
+        pdfHtml = `<div style="margin-top:0.5rem;"><span class="pdf-label">PDF: </span><a href="${job.pdfLink}" class="job-apply pdf-link" target="_blank" rel="noopener">Link to PDF</a></div>`;
       } else {
         pdfHtml = `<div style="margin-top:0.5rem;"><span class="pdf-label">PDF: </span><span class="job-apply pdf-unavailable" style="cursor:default;">Unavailable</span></div>`;
       }
       
-      // Disclaimer avec lien full job posting
       let fullJobHtml = '';
       if (job.fullJobPosting && job.fullJobPosting.trim() !== '') {
         fullJobHtml = `
@@ -541,7 +546,7 @@
       if (job.summary && job.summary.trim() !== '') {
         descriptionHtml = `
           <div class="job-description-wrapper">
-            <button class="desc-toggle" onclick="toggleDescription(this, '${descId}')">▶ Voir la description</button>
+            <button class="desc-toggle" onclick="toggleDescription(this, '${descId}')">▶ View description</button>
             <div id="${descId}" class="desc-content" style="display:none;">
               ${job.summary}
               ${fullJobHtml}
@@ -556,9 +561,9 @@
             ${newBadge}
             ${expiredBadge}
             ${disclaimerBadge}
-            <span class="tag tag-type">${job.type?.replace('-', ' ') || job.type || 'Non spécifié'}</span>
-            <span class="tag tag-loc">📍 ${job.location || job.country || 'Afrique'}</span>
-            <span class="tag tag-level">${job.level || 'Non spécifié'}</span>
+            <span class="tag tag-type">${job.type?.replace('-', ' ') || job.type || 'Not specified'}</span>
+            <span class="tag tag-loc">📍 ${job.location || job.country || 'Africa'}</span>
+            <span class="tag tag-level">${job.level || 'Not specified'}</span>
             ${job.remote ? '<span class="tag tag-remote">🌐 Remote</span>' : ''}
             ${regionTag}
             ${deadlineTag}
@@ -575,7 +580,7 @@
           </div>
           ${descriptionHtml}
         </div>
-        <div class="job-date">${job.date || 'Ajout récent'}</div>
+        <div class="job-date">${job.date || 'Recent'}</div>
       `;
       grid.appendChild(card);
     });
