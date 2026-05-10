@@ -1,15 +1,22 @@
 [
   {
-    "id": 1778379750866,
-    "title": "Consultant, MLE Strategy",
-    "company": "Evidence Action",
-    "location": "Global",
-    "type": "ingenierie",
-    "level": "Non spécifié",
+    "id": 1778382441028,
+    "title": "Project Support and M&E Officer",
+    "company": "Impact Gateway Africa",
+    "region": "International / Remote",
+    "location": "Mondial (Remote)",
+    "country": "Mondial (Remote)",
+    "city": "",
+    "type": "meal",
+    "level": "Junior",
+    "deadline": "Non spécifiée",
+    "salary": "Non spécifié",
+    "duration": "CDI",
     "remote": true,
     "isNew": true,
     "date": "10/05/2026",
-    "link": "https://apply.workable.com/evidence-action/j/BDF46B1E50/",
+    "link": "Send your 2 page CV, cover letter, and any supporting documents (eg program reports, M&E frameworks, event planning tools) to: info@impactgateway.africa",
+    "pdfLink": "https://drive.google.com/file/d/18Hzw0BfjQis9opHdxAY29GGIZPlm0fwp/view?pli=1",
     "source": "manuel_admin"
   }
 ]
