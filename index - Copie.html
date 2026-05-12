@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DataJobs.Africa — Data, Tech & AI Careers in Africa</title>
+  <meta name="description" content="The best job offers in Data Science, AI, Analytics and Tech for African talents."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ══════════════════════════════════════════
+       TOKENS — couleurs DJA originales
+    ══════════════════════════════════════════ */
+    :root {
+      --bg:      #f4f6f9;
+      --surface: #eef2f5;
+      --card:    #ffffff;
+      --border:  #dce4ec;
+      --nav:     #0d2b1f;
+      --nav2:    #0a2218;
+      --green:   #00a86b;
+      --green2:  #00c87a;
+      --gold:    #ffb800;
+      --blue:    #00a2ff;
+      --red:     #e65c5c;
+      --text:    #1a2a32;
+      --muted:   #4a6272;
+      --light:   #8a9aaa;
+      --nav-h:   52px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;font-size:15px;}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden;}
+
+    /* subtle grid bg */
+    body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,168,107,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,168,107,0.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+
+    /* ══════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+      height: var(--nav-h); background: var(--nav);
+      border-bottom: 2px solid rgba(0,168,107,0.4);
+      display: flex; align-items: center; padding: 0 1.5rem; gap: 1rem;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0; text-decoration: none; flex-shrink: 0; }
+    .nav-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--green); line-height: 1; }
+    .nav-name span { color: #fff; }
+    .nav-sub  { font-family: 'Space Mono', monospace; font-size: 0.38rem; color: #3a6a4a; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 1px; }
+
+    /* global search */
+    .nav-search-wrap { flex: 1; max-width: 480px; position: relative; margin: 0 1rem; }
+    .nav-search {
+      width: 100%; background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 0.38rem 1rem 0.38rem 2rem;
+      color: #fff; font-family: 'Space Mono', monospace; font-size: 0.72rem;
+      outline: none; transition: border-color .2s; border-radius: 2px;
+    }
+    .nav-search::placeholder { color: #3a6a4a; }
+    .nav-search:focus { border-color: var(--green); }
+    .nav-sicon { position: absolute; left: .65rem; top: 50%; transform: translateY(-50%); font-size: .7rem; pointer-events: none; }
+
+    .nav-right { margin-left: auto; display: flex; align-items: center; gap: .7rem; flex-shrink: 0; }
+    .nav-socials { display: flex; gap: .4rem; }
+    .nav-social {
+      display: flex; align-items: center; gap: .3rem;
+      font-family: 'Space Mono', monospace; font-size: .58rem;
+      text-decoration: none; padding: .25rem .55rem;
+      border: 1px solid rgba(255,255,255,.1); color: #8aaa8a;
+      transition: all .15s; border-radius: 2px; white-space: nowrap;
+    }
+    .nav-social:hover { border-color: var(--green); color: var(--green); background: rgba(0,168,107,.08); }
+    .btn-nav {
+      background: var(--green); color: #000; padding: .3rem .85rem;
+      font-family: 'Space Mono', monospace; font-size: .62rem; font-weight: 700;
+      text-decoration: none; white-space: nowrap; transition: background .15s; border-radius: 2px;
+    }
+    .btn-nav:hover { background: var(--green2); }
+
+    /* ══════════════════════════════════════════
+       STATS BAR — sous la nav, pleine largeur
+    ══════════════════════════════════════════ */
+    .stats-bar {
+      position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 200;
+      background: var(--nav2);
+      border-bottom: 1px solid rgba(0,168,107,.25);
+      display: flex; align-items: stretch; height: 38px;
+      overflow: hidden;
+    }
+    .stat-cell {
+      display: flex; align-items: center; gap: .5rem;
+      padding: 0 1.2rem;
+      border-right: 1px solid rgba(255,255,255,.06);
+      flex-shrink: 0;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: .95rem; color: var(--green); line-height: 1;
+    }
+    .stat-lbl {
+      font-family: 'Space Mono', monospace; font-size: .52rem;
+      text-transform: uppercase; letter-spacing: .1em; color: #3a6a4a;
+    }
+    .stat-sep { flex: 1; }
+
+    /* live badge */
+    .live-badge {
+      display: flex; align-items: center; gap: .4rem;
+      font-family: 'Space Mono', monospace; font-size: .55rem;
+      color: var(--green); padding: 0 1rem;
+    }
+    .live-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s ease infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.35;transform:scale(.65);} }
+
+    /* ══════════════════════════════════════════
+       FILTER BAR — dropdowns groupés
+    ══════════════════════════════════════════ */
+    .filter-bar {
+      position: sticky; top: calc(var(--nav-h) + 38px); z-index: 190;
+      background: var(--card);
+      border-bottom: 2px solid var(--border);
+      display: flex; align-items: center; gap: 0;
+      overflow-x: auto; height: 44px;
+    }
+    .filter-bar::-webkit-scrollbar { height: 0; }
+
+    /* each dropdown group */
+    .fgroup { position: relative; flex-shrink: 0; height: 100%; }
+    .fgroup-btn {
+      display: flex; align-items: center; gap: .45rem;
+      padding: 0 1.1rem; height: 100%;
+      background: transparent; border: none; border-right: 1px solid var(--border);
+      color: var(--muted); font-family: 'Space Mono', monospace; font-size: .68rem;
+      cursor: pointer; transition: all .15s; white-space: nowrap;
+    }
+    .fgroup-btn:hover { background: rgba(0,168,107,.05); color: var(--green); }
+    .fgroup-btn.has-active { color: var(--green); background: rgba(0,168,107,.07); }
+    .fgroup-btn .arrow { font-size: .5rem; transition: transform .15s; }
+    .fgroup.open .fgroup-btn .arrow { transform: rotate(180deg); }
+    .fgroup-cnt {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 17px; height: 17px;
+      background: var(--green); color: #000;
+      font-family: 'Space Mono', monospace; font-size: .5rem; font-weight: 700;
+      border-radius: 8px; padding: 0 .3rem;
+    }
+    .fgroup-cnt.hidden { display: none; }
+
+    /* dropdown panel */
+    .fgroup-panel {
+      display: none; position: absolute; top: 100%; left: 0;
+      min-width: 220px; background: var(--card);
+      border: 1px solid var(--border); border-top: 2px solid var(--green);
+      box-shadow: 0 8px 24px rgba(0,0,0,.1);
+      z-index: 400; padding: .5rem 0;
+    }
+    .fgroup.open .fgroup-panel { display: block; }
+
+    .fpanel-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .38rem 1rem; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: .8rem; color: var(--muted);
+      transition: all .1s; gap: .6rem;
+    }
+    .fpanel-item:hover { background: rgba(0,168,107,.06); color: var(--green); }
+    .fpanel-item.active { color: var(--green); background: rgba(0,168,107,.08); font-weight: 500; }
+    .fpanel-item .fpi-cnt {
+      font-family: 'Space Mono', monospace; font-size: .55rem;
+      background: var(--border); color: var(--muted);
+      padding: .05rem .3rem; border-radius: 6px; min-width: 18px; text-align: center; flex-shrink: 0;
+    }
+    .fpanel-item.active .fpi-cnt { background: var(--green); color: #000; }
+    .fpanel-divider { height: 1px; background: var(--border); margin: .3rem 0; }
+    .fpanel-label {
+      padding: .25rem 1rem; font-family: 'Space Mono', monospace;
+      font-size: .5rem; text-transform: uppercase; letter-spacing: .12em; color: var(--light);
+    }
+
+    /* filter bar right side */
+    .fbar-right {
+      margin-left: auto; display: flex; align-items: center; gap: .5rem;
+      padding: 0 1rem; border-left: 1px solid var(--border); flex-shrink: 0; height: 100%;
+    }
+    .sort-sel {
+      border: 1px solid var(--border); background: transparent; color: var(--muted);
+      font-family: 'Space Mono', monospace; font-size: .62rem;
+      padding: .25rem .5rem; cursor: pointer; outline: none; border-radius: 2px;
+    }
+    .vbtns { display: flex; gap: 2px; }
+    .vbtn {
+      width: 26px; height: 26px; background: transparent;
+      border: 1px solid var(--border); color: var(--light);
+      cursor: pointer; font-size: .8rem; display: flex; align-items: center;
+      justify-content: center; transition: all .12s; border-radius: 2px;
+    }
+    .vbtn.active { background: var(--green); border-color: var(--green); color: #000; }
+
+    /* result count */
+    .fbar-count {
+      font-family: 'Space Mono', monospace; font-size: .63rem; color: var(--muted);
+      white-space: nowrap; padding: 0 .8rem; border-left: 1px solid var(--border); height: 100%;
+      display: flex; align-items: center;
+    }
+    .fbar-count strong { color: var(--text); }
+
+    /* ══════════════════════════════════════════
+       ACTIVE FILTERS STRIP
+    ══════════════════════════════════════════ */
+    .active-filters {
+      display: none; /* shown via JS when filters active */
+      position: relative; z-index: 1;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: .4rem 1.2rem; gap: .4rem; flex-wrap: wrap; align-items: center;
+    }
+    .active-filters.visible { display: flex; }
+    .af-label { font-family: 'Space Mono', monospace; font-size: .55rem; color: var(--light); text-transform: uppercase; letter-spacing: .1em; margin-right: .2rem; }
+    .af-chip {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-family: 'Space Mono', monospace; font-size: .58rem;
+      background: rgba(0,168,107,.1); color: var(--green);
+      border: 1px solid rgba(0,168,107,.25); padding: .15rem .5rem; border-radius: 2px; cursor: pointer;
+    }
+    .af-chip:hover { background: rgba(230,92,92,.1); color: var(--red); border-color: rgba(230,92,92,.25); }
+    .af-clear {
+      margin-left: auto; font-family: 'Space Mono', monospace; font-size: .55rem;
+      color: var(--red); cursor: pointer; text-decoration: underline; background: none; border: none;
+    }
+
+    /* ══════════════════════════════════════════
+       MAIN CONTENT
+    ══════════════════════════════════════════ */
+    .main-wrap {
+      padding-top: calc(var(--nav-h) + 38px + 44px);
+      position: relative; z-index: 1; min-height: 100vh;
+    }
+
+    /* ══════════════════════════════════════════
+       TERMINAL LIST VIEW — style DJA unique
+    ══════════════════════════════════════════ */
+    .jobs-terminal { width: 100%; }
+
+    .jt-item {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: .75rem 1.4rem;
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      gap: .6rem; align-items: center;
+      transition: background .1s; cursor: pointer;
+      position: relative;
+    }
+    .jt-item::after {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 3px;
+      background: var(--green); transform: scaleY(0); transition: transform .15s;
+    }
+    .jt-item:hover { background: var(--surface); }
+    .jt-item:hover::after { transform: scaleY(1); }
+
+    /* terminal prompt symbol */
+    .jt-prompt {
+      font-family: 'Space Mono', monospace; font-size: .75rem;
+      color: var(--green); opacity: .5; user-select: none; flex-shrink: 0;
+    }
+    .jt-item:hover .jt-prompt { opacity: 1; }
+
+    .jt-main { min-width: 0; }
+    .jt-row1 { display: flex; align-items: baseline; gap: .7rem; flex-wrap: wrap; margin-bottom: .2rem; }
+    .jt-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: .92rem; color: var(--text); }
+    .jt-sep   { color: var(--border); font-size: .7rem; }
+    .jt-company { font-size: .78rem; color: #000; font-weight: 500; }
+    .jt-row2 { display: flex; gap: .32rem; flex-wrap: wrap; }
+
+    .jt-right {
+      display: flex; flex-direction: column; align-items: flex-end;
+      gap: .3rem; flex-shrink: 0; min-width: 95px;
+    }
+    .jt-date { font-family: 'Space Mono', monospace; font-size: .55rem; color: var(--light); }
+    .jt-apply {
+      display: inline-flex; align-items: center; gap: .25rem;
+      font-family: 'Space Mono', monospace; font-size: .6rem;
+      text-decoration: none; color: #1e4a6b; transition: gap .12s;
+    }
+    .jt-apply:hover { gap: .4rem; text-decoration: underline; }
+
+    /* ══════════════════════════════════════════
+       GRID VIEW
+    ══════════════════════════════════════════ */
+    .jobs-grid-view {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1px; background: var(--border);
+    }
+    .jg-item {
+      background: var(--card); padding: 1.1rem;
+      display: flex; flex-direction: column; gap: .45rem;
+      transition: background .12s; position: relative; overflow: hidden; cursor: pointer;
+    }
+    .jg-item::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--green); transform: scaleX(0); transition: transform .18s; transform-origin: left;
+    }
+    .jg-item:hover { background: var(--surface); }
+    .jg-item:hover::before { transform: scaleX(1); }
+    .jg-title   { font-family: 'Syne', sans-serif; font-weight: 700; font-size: .9rem; color: var(--text); line-height: 1.25; }
+    .jg-company { font-size: .76rem; color: #000; font-weight: 500; }
+    .jg-tags    { display: flex; gap: .3rem; flex-wrap: wrap; margin-top: auto; }
+    .jg-footer  { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: .5rem; margin-top: .3rem; }
+
+    /* ══════════════════════════════════════════
+       TAGS — couleurs DJA exactes
+    ══════════════════════════════════════════ */
+    .tag { display: inline-flex; align-items: center; font-family: 'Space Mono', monospace; font-size: .56rem; padding: .12rem .4rem; text-transform: uppercase; letter-spacing: .04em; font-weight: 700; border-radius: 1px; }
+    .t-new    { background: var(--green); color: #000; animation: pulse 2s ease infinite; }
+    .t-exp    { background: var(--red); color: #fff; }
+    .t-type   { background: rgba(0,168,107,.1); color: var(--green); }
+    .t-loc    { background: rgba(0,162,255,.1); color: var(--blue); }
+    .t-level  { background: rgba(255,184,0,.1); color: #7a5a00; }
+    .t-remote { background: rgba(230,92,92,.1); color: var(--red); }
+    .t-dl     { background: rgba(0,162,255,.08); color: var(--blue); }
+    .t-dlsoon { background: rgba(230,92,92,.1); color: var(--red); }
+    .t-sal    { background: rgba(255,184,0,.1); color: #7a5a00; }
+
+    /* ══════════════════════════════════════════
+       EMPTY STATE
+    ══════════════════════════════════════════ */
+    .empty { padding: 5rem 2rem; text-align: center; }
+    .empty .ico { font-size: 2.5rem; margin-bottom: .8rem; }
+    .empty h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; margin-bottom: .35rem; }
+    .empty p { color: var(--muted); font-size: .82rem; }
+
+    /* ══════════════════════════════════════════
+       DETAIL PANEL
+    ══════════════════════════════════════════ */
+    .overlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(13,43,31,.5); backdrop-filter: blur(2px); }
+    .overlay.open { display: block; }
+    .dp {
+      position: fixed; top: 0; right: -100%; bottom: 0; z-index: 501;
+      width: min(540px, 100vw); background: var(--card); border-left: 3px solid var(--green);
+      overflow-y: auto; transition: right .28s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column;
+    }
+    .dp.open { right: 0; }
+    .dp-h {
+      background: var(--nav); padding: 1.1rem 1.4rem;
+      border-bottom: 2px solid var(--green); position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: flex-start; gap: .8rem;
+    }
+    .dp-ht { flex: 1; min-width: 0; }
+    .dp-ti { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; color: #fff; margin-bottom: .2rem; line-height: 1.25; }
+    .dp-co { font-size: .8rem; color: #4a9a7a; font-weight: 500; }
+    .dp-cl { background: rgba(255,255,255,.08); border: none; color: #fff; width: 26px; height: 26px; cursor: pointer; font-size: .95rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 2px; }
+    .dp-cl:hover { background: var(--green); color: #000; }
+    .dp-b { padding: 1.3rem; flex: 1; }
+    .dp-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: 1rem; }
+    .dp-sec { margin-bottom: 1.1rem; }
+    .dp-sl { font-family: 'Space Mono', monospace; font-size: .54rem; text-transform: uppercase; letter-spacing: .15em; color: var(--light); margin-bottom: .42rem; display: flex; align-items: center; gap: .4rem; }
+    .dp-sl::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .dp-tx { font-size: .83rem; line-height: 1.7; color: var(--text); }
+    .dp-tx p { margin-bottom: .55rem; }
+    .dp-tx ul,.dp-tx ol { margin-left: 1.3rem; margin-bottom: .55rem; }
+    .dp-tx li { margin-bottom: .22rem; }
+    .dp-acts { display: flex; flex-direction: column; gap: .42rem; }
+    .dp-act { display: flex; align-items: center; gap: .55rem; padding: .62rem .9rem; text-decoration: none; font-family: 'Space Mono', monospace; font-size: .67rem; border: 1px solid var(--border); color: var(--text); transition: all .12s; cursor: pointer; border-radius: 2px; }
+    .dp-act:hover { border-color: var(--green); color: var(--green); }
+    .dp-act.primary { background: var(--green); color: #000; border-color: var(--green); font-weight: 700; }
+    .dp-act.primary:hover { background: var(--green2); }
+    .dp-act.mail { color: #1e4a6b; border-color: rgba(30,74,107,.2); }
+    .dp-act.mail:hover { background: rgba(30,74,107,.05); border-color: #1e4a6b; }
+    .dp-act.pdf { color: #8b0000; border-color: rgba(139,0,0,.2); }
+    .dp-act.instr { cursor: default; background: var(--surface); }
+    .dp-disc { background: rgba(255,184,0,.08); border: 1px solid rgba(255,184,0,.25); padding: .62rem; margin-top: 1rem; font-size: .72rem; color: #7a5a00; line-height: 1.5; border-radius: 2px; }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    .site-footer {
+      background: var(--nav); border-top: 2px solid rgba(0,168,107,.35);
+      padding: 1.2rem 1.5rem; display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: .7rem;
+      position: relative; z-index: 1;
+    }
+    .ft-br { font-family: 'Syne', sans-serif; font-weight: 800; font-size: .95rem; color: var(--green); }
+    .ft-br span { color: #fff; }
+    .ft-cp { font-family: 'Space Mono', monospace; font-size: .52rem; color: #3a6a4a; margin-top: 2px; }
+    .ft-lk { display: flex; gap: 1rem; }
+    .ft-lk a { font-family: 'Space Mono', monospace; font-size: .57rem; color: #3a6a4a; text-decoration: none; text-transform: uppercase; letter-spacing: .08em; }
+    .ft-lk a:hover { color: var(--green); }
+
+    /* ══════════════════════════════════════════
+       SCROLL TOP
+    ══════════════════════════════════════════ */
+    #sTop { position: fixed; bottom: 1.4rem; right: 1.4rem; z-index: 400; width: 34px; height: 34px; background: var(--green); color: #000; border: none; cursor: pointer; font-size: .95rem; display: none; align-items: center; justify-content: center; transition: transform .15s; border-radius: 2px; }
+    #sTop:hover { transform: translateY(-2px); }
+
+    /* ══════════════════════════════════════════
+       MOBILE
+    ══════════════════════════════════════════ */
+    @media (max-width: 700px) {
+      .nav-search-wrap { display: none; }
+      .nav-socials { display: none; }
+      .stats-bar .stat-cell:nth-child(n+4) { display: none; }
+      .jt-item { grid-template-columns: 22px 1fr auto; }
+      .jobs-grid-view { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .fgroup-btn { padding: 0 .7rem; font-size: .62rem; }
+      .jt-company { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAV
+══════════════════════════════════════════ -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div>
+      <div class="nav-name">Data<span>Jobs</span>.Africa</div>
+      <div class="nav-sub">Data · Tech · AI · Africa</div>
+    </div>
+  </a>
+
+  <div class="nav-search-wrap">
+    <span class="nav-sicon">🔍</span>
+    <input class="nav-search" type="text" id="searchInput" placeholder="Search jobs, companies, cities…"/>
+  </div>
+
+  <div class="nav-right">
+    <div class="nav-socials">
+      <a href="https://tinyurl.com/3urze6e5" class="nav-social" target="_blank" rel="noopener">📘 Facebook</a>
+      <a href="https://www.linkedin.com/in/datajobs-africa-225789409" class="nav-social" target="_blank" rel="noopener">💼 LinkedIn</a>
+      <a href="YOUR_WHATSAPP_LINK" class="nav-social">💬 WhatsApp</a>
+    </div>
+    <a href="mailto:datajobsafrica@proton.me?subject=Job%20Submission" class="btn-nav">+ Submit a Job</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     STATS BAR
+══════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stat-cell">
+    <div>
+      <div class="stat-num" id="sbTotal">0</div>
+      <div class="stat-lbl">Jobs</div>
+    </div>
+  </div>
+  <div class="stat-cell">
+    <div>
+      <div class="stat-num" id="sbActive">0</div>
+      <div class="stat-lbl">Active</div>
+    </div>
+  </div>
+  <div class="stat-cell">
+    <div>
+      <div class="stat-num" id="sbRemote">0</div>
+      <div class="stat-lbl">Remote</div>
+    </div>
+  </div>
+  <div class="stat-cell">
+    <div>
+      <div class="stat-num" id="sbCountries">0</div>
+      <div class="stat-lbl">Countries</div>
+    </div>
+  </div>
+  <div class="stat-cell">
+    <div>
+      <div class="stat-num" id="sbNew">0</div>
+      <div class="stat-lbl">New this week</div>
+    </div>
+  </div>
+  <div class="stat-sep"></div>
+  <div class="live-badge">
+    <div class="live-dot"></div>
+    Updated weekly
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FILTER BAR — dropdowns groupés
+══════════════════════════════════════════ -->
+<div class="filter-bar" id="filterBar">
+
+  <!-- ALL -->
+  <div class="fgroup" id="fg-all">
+    <button class="fgroup-btn has-active" onclick="setAllTypes()">
+      All Types
+    </button>
+  </div>
+
+  <!-- TECH & DATA -->
+  <div class="fgroup" id="fg-tech">
+    <button class="fgroup-btn" onclick="toggleGroup('fg-tech')">
+      🖥 Tech & Data
+      <span class="fgroup-cnt hidden" id="fcnt-tech">0</span>
+      <span class="arrow">▾</span>
+    </button>
+    <div class="fgroup-panel">
+      <div class="fpanel-label">Technology & Data</div>
+      <div class="fpanel-item" data-type="data-science" onclick="pickType('data-science',this)">Data Science <span class="fpi-cnt" id="cnt-data-science">0</span></div>
+      <div class="fpanel-item" data-type="ia" onclick="pickType('ia',this)">AI / Machine Learning <span class="fpi-cnt" id="cnt-ia">0</span></div>
+      <div class="fpanel-item" data-type="ingenierie" onclick="pickType('ingenierie',this)">Data Engineering <span class="fpi-cnt" id="cnt-ingenierie">0</span></div>
+      <div class="fpanel-item" data-type="analytics" onclick="pickType('analytics',this)">Analytics / BI <span class="fpi-cnt" id="cnt-analytics">0</span></div>
+    </div>
+  </div>
+
+  <!-- INTL DEVELOPMENT -->
+  <div class="fgroup" id="fg-dev">
+    <button class="fgroup-btn" onclick="toggleGroup('fg-dev')">
+      🌍 Intl. Development
+      <span class="fgroup-cnt hidden" id="fcnt-dev">0</span>
+      <span class="arrow">▾</span>
+    </button>
+    <div class="fgroup-panel">
+      <div class="fpanel-label">International Development</div>
+      <div class="fpanel-item" data-type="meal" onclick="pickType('meal',this)">Monitoring &amp; Evaluation <span class="fpi-cnt" id="cnt-meal">0</span></div>
+      <div class="fpanel-item" data-type="research" onclick="pickType('research',this)">Research <span class="fpi-cnt" id="cnt-research">0</span></div>
+      <div class="fpanel-item" data-type="prog-data" onclick="pickType('prog-data',this)">Programme Data Mgmt <span class="fpi-cnt" id="cnt-prog-data">0</span></div>
+    </div>
+  </div>
+
+  <!-- PUBLIC HEALTH -->
+  <div class="fgroup" id="fg-health">
+    <button class="fgroup-btn" onclick="toggleGroup('fg-health')">
+      🏥 Public Health
+      <span class="fgroup-cnt hidden" id="fcnt-health">0</span>
+      <span class="arrow">▾</span>
+    </button>
+    <div class="fgroup-panel">
+      <div class="fpanel-label">Public Health & Social Sciences</div>
+      <div class="fpanel-item" data-type="epidemiology" onclick="pickType('epidemiology',this)">Epidemiology & Health Data <span class="fpi-cnt" id="cnt-epidemiology">0</span></div>
+      <div class="fpanel-item" data-type="biostatistics" onclick="pickType('biostatistics',this)">Biostatistics <span class="fpi-cnt" id="cnt-biostatistics">0</span></div>
+      <div class="fpanel-item" data-type="demography" onclick="pickType('demography',this)">Demography & Population <span class="fpi-cnt" id="cnt-demography">0</span></div>
+      <div class="fpanel-item" data-type="social-research" onclick="pickType('social-research',this)">Social Research & Surveys <span class="fpi-cnt" id="cnt-social-research">0</span></div>
+    </div>
+  </div>
+
+  <!-- STATISTICS -->
+  <div class="fgroup" id="fg-stats">
+    <button class="fgroup-btn" onclick="toggleGroup('fg-stats')">
+      📊 Statistics
+      <span class="fgroup-cnt hidden" id="fcnt-stats">0</span>
+      <span class="arrow">▾</span>
+    </button>
+    <div class="fgroup-panel">
+      <div class="fpanel-label">Statistics & Quantitative Methods</div>
+      <div class="fpanel-item" data-type="official-stats" onclick="pickType('official-stats',this)">Official Statistics <span class="fpi-cnt" id="cnt-official-stats">0</span></div>
+      <div class="fpanel-item" data-type="survey" onclick="pickType('survey',this)">Survey & Sampling Methods <span class="fpi-cnt" id="cnt-survey">0</span></div>
+      <div class="fpanel-item" data-type="actuarial" onclick="pickType('actuarial',this)">Actuarial & Risk Analysis <span class="fpi-cnt" id="cnt-actuarial">0</span></div>
+    </div>
+  </div>
+
+  <!-- OPTIONS -->
+  <div class="fgroup" id="fg-opts">
+    <button class="fgroup-btn" onclick="toggleGroup('fg-opts')">
+      ⚙ Options
+      <span class="arrow">▾</span>
+    </button>
+    <div class="fgroup-panel" style="min-width:260px;">
+      <div class="fpanel-label">Level</div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;padding:.3rem 1rem .6rem;">
+        <button class="fpanel-lchip active" data-level="all" onclick="toggleLevel('all',this)">All</button>
+        <button class="fpanel-lchip" data-level="Intern" onclick="toggleLevel('Intern',this)">Intern</button>
+        <button class="fpanel-lchip" data-level="Junior" onclick="toggleLevel('Junior',this)">Junior</button>
+        <button class="fpanel-lchip" data-level="Mid" onclick="toggleLevel('Mid',this)">Mid</button>
+        <button class="fpanel-lchip" data-level="Senior" onclick="toggleLevel('Senior',this)">Senior</button>
+        <button class="fpanel-lchip" data-level="Lead" onclick="toggleLevel('Lead',this)">Lead</button>
+      </div>
+      <div class="fpanel-divider"></div>
+      <div class="fpanel-label">Deadline</div>
+      <div style="display:flex;flex-direction:column;gap:3px;padding:.3rem 1rem .6rem;">
+        <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.78rem;color:var(--muted);">
+          <input type="radio" name="dl" value="all" checked onchange="applyFilters()" style="accent-color:var(--green);"> All deadlines
+        </label>
+        <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.78rem;color:var(--muted);">
+          <input type="radio" name="dl" value="7" onchange="applyFilters()" style="accent-color:var(--green);"> Within 7 days
+        </label>
+        <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.78rem;color:var(--muted);">
+          <input type="radio" name="dl" value="30" onchange="applyFilters()" style="accent-color:var(--green);"> Within 30 days
+        </label>
+      </div>
+      <div class="fpanel-divider"></div>
+      <div style="padding:.4rem 1rem .6rem;display:flex;flex-direction:column;gap:.5rem;">
+        <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:.78rem;color:var(--muted);">
+          🌐 Remote only
+          <input type="checkbox" id="remoteToggle" onchange="applyFilters()" style="accent-color:var(--green);">
+        </label>
+        <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:.78rem;color:var(--muted);">
+          ⏰ Hide expired
+          <input type="checkbox" id="hideExp" onchange="applyFilters()" checked style="accent-color:var(--green);">
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGION -->
+  <div class="fgroup" id="fg-region">
+    <button class="fgroup-btn" onclick="toggleGroup('fg-region')">
+      📍 Region
+      <span class="fgroup-cnt hidden" id="fcnt-region">0</span>
+      <span class="arrow">▾</span>
+    </button>
+    <div class="fgroup-panel" id="regionPanel" style="min-width:220px;">
+      <div class="fpanel-label">Select regions</div>
+    </div>
+  </div>
+
+  <!-- RIGHT: count + sort + view -->
+  <div class="fbar-count"><strong id="resCount">0</strong> results</div>
+  <div class="fbar-right">
+    <select class="sort-sel" id="sortSel" onchange="applyFilters()">
+      <option value="date">Most recent</option>
+      <option value="deadline">Deadline soon</option>
+      <option value="az">A → Z</option>
+    </select>
+    <div class="vbtns">
+      <button class="vbtn active" id="btnList" onclick="setView('list')" title="Terminal list">▶_</button>
+      <button class="vbtn" id="btnGrid" onclick="setView('grid')" title="Grid">⊞</button>
+    </div>
+  </div>
+</div>
+
+<!-- active filters strip -->
+<div class="active-filters" id="activeFilters">
+  <span class="af-label">Filters:</span>
+  <span id="afChips"></span>
+  <button class="af-clear" onclick="clearAll()">✕ Clear all</button>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════ -->
+<div class="main-wrap">
+  <div id="jobsContainer">
+    <div class="empty"><div class="ico">⏳</div><h3>Loading…</h3><p>Fetching opportunities…</p></div>
+  </div>
+
+  <footer class="site-footer">
+    <div>
+      <div class="ft-br">Data<span>Jobs</span>.Africa</div>
+      <div class="ft-cp">Independent · Free · Updated weekly · 🌍 Pan-African</div>
+    </div>
+    <div class="ft-lk">
+      <a href="YOUR_WHATSAPP_LINK">WhatsApp</a>
+      <a href="https://tinyurl.com/3urze6e5" target="_blank">Facebook</a>
+      <a href="https://www.linkedin.com/in/datajobs-africa-225789409" target="_blank">LinkedIn</a>
+      <a href="mailto:datajobsafrica@proton.me">Contact</a>
+    </div>
+  </footer>
+</div>
+
+<!-- DETAIL PANEL -->
+<div class="overlay" id="overlay" onclick="closeDetail()"></div>
+<div class="dp" id="detailPanel">
+  <div class="dp-h">
+    <div class="dp-ht">
+      <div class="dp-ti" id="dpTitle">—</div>
+      <div class="dp-co" id="dpCompany">—</div>
+    </div>
+    <button class="dp-cl" onclick="closeDetail()">✕</button>
+  </div>
+  <div class="dp-b">
+    <div class="dp-tags" id="dpTags"></div>
+    <div class="dp-sec"><div class="dp-sl">Overview</div><div class="dp-tx" id="dpSummary"></div></div>
+    <div class="dp-sec"><div class="dp-sl">Apply</div><div class="dp-acts" id="dpActions"></div></div>
+    <div class="dp-disc">⚠️ <strong>Auto-generated summary.</strong> Always consult the full job posting for official information.</div>
+  </div>
+</div>
+
+<button id="sTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- level chip style inside dropdown -->
+<style>
+  .fpanel-lchip {
+    padding: .18rem .5rem; border: 1px solid var(--border); background: transparent;
+    color: var(--muted); font-family: 'Space Mono', monospace; font-size: .56rem;
+    cursor: pointer; transition: all .12s; border-radius: 2px;
+  }
+  .fpanel-lchip.active { border-color: var(--gold); color: #7a5a00; background: rgba(255,184,0,.12); }
+</style>
+
+<script>
+/* ── CONFIG ── */
+const CFG = { jsonFile: 'offres.json' };
+const TL = {
+  'analytics':'Analytics / BI', 'ingenierie':'Data Engineering',
+  'data-science':'Data Science', 'ia':'AI / ML',
+  'meal':'M&E', 'research':'Research',
+  'econometrics':'Econometrics', 'banking':'Banking & Finance',
+  'public-finance':'Public Finance', 'prog-data':'Programme Data',
+  'epidemiology':'Epidemiology', 'biostatistics':'Biostatistics',
+  'demography':'Demography', 'social-research':'Social Research',
+  'official-stats':'Official Statistics', 'survey':'Survey Methods',
+  'actuarial':'Actuarial & Risk',
+};
+
+/* group → types mapping */
+const GROUPS = {
+  'tech':   ['data-science','ia','ingenierie','analytics'],
+  'dev':    ['meal','research','prog-data'],
+  'health': ['epidemiology','biostatistics','demography','social-research'],
+  'stats':  ['official-stats','survey','actuarial'],
+};
+
+let ALL=[], AT='all', AL=new Set(['all']), AR=new Set(), CV='list';
+
+/* ── UTILS ── */
+const pDate=s=>{if(!s)return null;const p=s.split('/');return p.length===3?new Date(p[2],p[1]-1,p[0]):new Date(s);};
+const pDL=s=>(!s||['Not specified','Non spécifiée',''].includes(s))?null:new Date(s);
+const isExp=j=>{const d=pDL(j.deadline);if(!d)return false;const t=new Date();t.setHours(0,0,0,0);return d<t;};
+const dLeft=j=>{const d=pDL(j.deadline);if(!d)return Infinity;const t=new Date();t.setHours(0,0,0,0);return Math.ceil((d-t)/86400000);};
+const tag=(c,x)=>`<span class="tag ${c}">${x}</span>`;
+
+function bTags(j){
+  const e=isExp(j),d=dLeft(j);let h='';
+  if(j.isNew&&!e) h+=tag('t-new','🔥 New');
+  if(e) h+=tag('t-exp','⏰ Expired');
+  h+=tag('t-type',TL[j.type]||j.type||'?');
+  h+=tag('t-loc','📍 '+(j.location||j.country||'Africa'));
+  if(j.level) h+=tag('t-level',j.level);
+  if(j.remote) h+=tag('t-remote','🌐 Remote');
+  if(j.deadline&&!['Not specified','Non spécifiée',''].includes(j.deadline)){
+    const l=e?'Expired':(d<=7?`⚡ ${d}d left`:`📅 ${j.deadline}`);
+    h+=tag(d<=7&&!e?'t-dlsoon':'t-dl',l);
+  }
+  if(j.salary&&!['Not specified','Non spécifié',''].includes(j.salary)) h+=tag('t-sal','💰 '+j.salary);
+  return h;
+}
+
+/* ── DROPDOWN GROUPS ── */
+function toggleGroup(id){
+  const el=document.getElementById(id);
+  const wasOpen=el.classList.contains('open');
+  document.querySelectorAll('.fgroup.open').forEach(g=>g.classList.remove('open'));
+  if(!wasOpen) el.classList.add('open');
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.fgroup')) document.querySelectorAll('.fgroup.open').forEach(g=>g.classList.remove('open'));
+});
+
+/* ── TYPE SELECTION ── */
+function setAllTypes(){
+  AT='all';
+  document.querySelectorAll('.fpanel-item').forEach(x=>x.classList.remove('active'));
+  document.getElementById('fg-all').querySelector('.fgroup-btn').classList.add('has-active');
+  Object.keys(GROUPS).forEach(g=>updateGroupBadge(g));
+  applyFilters();
+}
+
+function pickType(t,el){
+  AT=t;
+  document.querySelectorAll('.fpanel-item').forEach(x=>x.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('fg-all').querySelector('.fgroup-btn').classList.remove('has-active');
+  Object.keys(GROUPS).forEach(g=>updateGroupBadge(g));
+  document.querySelectorAll('.fgroup.open').forEach(g=>g.classList.remove('open'));
+  applyFilters();
+}
+
+function updateGroupBadge(g){
+  const types=GROUPS[g];
+  const btn=document.getElementById(`fg-${g}`).querySelector('.fgroup-btn');
+  const cnt=document.getElementById(`fcnt-${g}`);
+  const active=types.includes(AT);
+  btn.classList.toggle('has-active',active);
+  if(cnt){cnt.classList.toggle('hidden',!active);}
+}
+
+/* ── LEVEL ── */
+function toggleLevel(l,b){
+  if(l==='all'){
+    AL=new Set(['all']);
+    document.querySelectorAll('.fpanel-lchip').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+  } else {
+    AL.delete('all');
+    document.querySelector('[data-level="all"]').classList.remove('active');
+    if(AL.has(l)){AL.delete(l);b.classList.remove('active');}
+    else{AL.add(l);b.classList.add('active');}
+    if(AL.size===0){AL.add('all');document.querySelector('[data-level="all"]').classList.add('active');}
+  }
+  applyFilters();
+}
+
+/* ── REGIONS ── */
+function buildRegions(){
+  const regs=[...new Set(ALL.map(j=>j.region).filter(Boolean))].sort();
+  const panel=document.getElementById('regionPanel');
+  panel.innerHTML='<div class="fpanel-label">Select regions</div>';
+  regs.forEach(r=>{
+    const d=document.createElement('div');
+    d.className='fpanel-item';
+    d.innerHTML=`<label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;width:100%;"><input type="checkbox" style="accent-color:var(--green);" onchange="toggleRegion('${r}',this)"> ${r}</label>`;
+    panel.appendChild(d);
+  });
+}
+function toggleRegion(r,cb){
+  cb.checked?AR.add(r):AR.delete(r);
+  const cnt=document.getElementById('fcnt-region');
+  if(cnt){
+    const n=AR.size;
+    cnt.textContent=n;
+    cnt.classList.toggle('hidden',n===0);
+    document.getElementById('fg-region').querySelector('.fgroup-btn').classList.toggle('has-active',n>0);
+  }
+  applyFilters();
+}
+
+/* ── ACTIVE FILTERS DISPLAY ── */
+function updateActiveFilters(){
+  const strip=document.getElementById('activeFilters');
+  const chips=document.getElementById('afChips');
+  const parts=[];
+  if(AT!=='all') parts.push(`Type: ${TL[AT]||AT}`);
+  if(!AL.has('all')) parts.push(`Level: ${[...AL].join(', ')}`);
+  if(AR.size>0) parts.push(`Region: ${[...AR].join(', ')}`);
+  if(document.getElementById('remoteToggle')?.checked) parts.push('Remote only');
+  chips.innerHTML=parts.map(p=>`<span class="af-chip">${p}</span>`).join('');
+  strip.classList.toggle('visible',parts.length>0);
+}
+
+function clearAll(){
+  AT='all';
+  AL=new Set(['all']);
+  AR.clear();
+  document.getElementById('remoteToggle').checked=false;
+  document.getElementById('hideExp').checked=true;
+  document.querySelector('input[name="dl"][value="all"]').checked=true;
+  document.querySelectorAll('.fpanel-item').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.fpanel-lchip').forEach(x=>x.classList.remove('active'));
+  document.querySelector('[data-level="all"]').classList.add('active');
+  document.getElementById('fg-all').querySelector('.fgroup-btn').classList.add('has-active');
+  document.querySelectorAll('[id^="fcnt-"]').forEach(x=>x.classList.add('hidden'));
+  document.querySelectorAll('.fgroup-btn').forEach(b=>b.classList.remove('has-active'));
+  document.getElementById('fg-all').querySelector('.fgroup-btn').classList.add('has-active');
+  // uncheck all region checkboxes
+  document.querySelectorAll('#regionPanel input[type="checkbox"]').forEach(cb=>cb.checked=false);
+  applyFilters();
+}
+
+/* ── APPLY FILTERS ── */
+function applyFilters(){
+  const q=document.getElementById('searchInput').value.toLowerCase().trim();
+  const ro=document.getElementById('remoteToggle')?.checked||false;
+  const he=document.getElementById('hideExp')?.checked||true;
+  const dv=document.querySelector('input[name="dl"]:checked')?.value||'all';
+  const sv=document.getElementById('sortSel').value;
+
+  let res=ALL.filter(j=>{
+    if(AT!=='all'&&j.type!==AT) return false;
+    if(!AL.has('all')&&!AL.has(j.level)) return false;
+    if(AR.size>0&&!AR.has(j.region)) return false;
+    if(ro&&!j.remote) return false;
+    if(he&&isExp(j)) return false;
+    if(dv!=='all'&&dLeft(j)>parseInt(dv)) return false;
+    if(q){const h=`${j.title} ${j.company} ${j.location} ${j.country} ${j.region}`.toLowerCase();if(!h.includes(q))return false;}
+    return true;
+  });
+
+  if(sv==='date') res.sort((a,b)=>(pDate(b.date)||0)-(pDate(a.date)||0));
+  else if(sv==='deadline') res.sort((a,b)=>dLeft(a)-dLeft(b));
+  else res.sort((a,b)=>(a.title||'').localeCompare(b.title||''));
+
+  document.getElementById('resCount').textContent=res.length;
+  updateActiveFilters();
+  CV==='list'?renderTerminal(res):renderGrid(res);
+}
+
+/* ── RENDER TERMINAL ── */
+function renderTerminal(jobs){
+  const c=document.getElementById('jobsContainer');
+  if(!jobs.length){
+    c.innerHTML=`<div class="empty"><div class="ico">🔍</div><h3>No Results</h3><p>Try adjusting your filters or search terms.</p></div>`;
+    return;
+  }
+  const f=document.createDocumentFragment();
+  jobs.forEach((j,i)=>{
+    const d=document.createElement('div');
+    d.className='jt-item';
+    d.onclick=()=>openDetail(j);
+    const idx=String(i+1).padStart(2,'0');
+    const ab=j.applyLink?`<a class="jt-apply" href="${j.applyLink}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Apply →</a>`:'';
+    d.innerHTML=`
+      <div class="jt-prompt">${idx}</div>
+      <div class="jt-main">
+        <div class="jt-row1">
+          <span class="jt-title">${j.title}</span>
+          <span class="jt-sep">—</span>
+          <span class="jt-company">${j.company}</span>
+        </div>
+        <div class="jt-row2">${bTags(j)}</div>
+      </div>
+      <div class="jt-right">
+        <span class="jt-date">${j.date||''}</span>
+        ${ab}
+      </div>`;
+    f.appendChild(d);
+  });
+  c.innerHTML='';
+  c.appendChild(f);
+}
+
+/* ── RENDER GRID ── */
+function renderGrid(jobs){
+  const c=document.getElementById('jobsContainer');
+  if(!jobs.length){
+    c.innerHTML=`<div class="empty"><div class="ico">🔍</div><h3>No Results</h3><p>Try adjusting your filters or search terms.</p></div>`;
+    return;
+  }
+  const g=document.createElement('div');
+  g.className='jobs-grid-view';
+  jobs.forEach(j=>{
+    const d=document.createElement('div');
+    d.className='jg-item';
+    d.onclick=()=>openDetail(j);
+    const ab=j.applyLink?`<a class="jt-apply" href="${j.applyLink}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Apply →</a>`:'';
+    d.innerHTML=`
+      <div class="jg-title">${j.title}</div>
+      <div class="jg-company">${j.company}</div>
+      <div class="jg-tags">${bTags(j)}</div>
+      <div class="jg-footer"><span class="jt-date">${j.date||''}</span>${ab}</div>`;
+    g.appendChild(d);
+  });
+  c.innerHTML='';
+  c.appendChild(g);
+}
+
+/* ── DETAIL PANEL ── */
+function openDetail(j){
+  document.getElementById('dpTitle').textContent=j.title;
+  document.getElementById('dpCompany').textContent=j.company;
+  document.getElementById('dpTags').innerHTML=
+    bTags(j)+
+    (j.region?tag('t-type','🌍 '+j.region):'')+
+    (j.duration&&j.duration!=='CDI'?tag('t-dl','⏱ '+j.duration):'');
+  document.getElementById('dpSummary').innerHTML=
+    j.summary?`<p>${j.summary}</p>`:'<p><em>No description available.</em></p>';
+  const A=document.getElementById('dpActions');
+  A.innerHTML='';
+  const mk=(cls,href,txt)=>{const a=document.createElement('a');a.href=href;a.target='_blank';a.rel='noopener';a.className='dp-act '+cls;a.textContent=txt;A.appendChild(a);};
+  const md=(cls,txt)=>{const d=document.createElement('div');d.className='dp-act '+cls;d.textContent=txt;A.appendChild(d);};
+  if(j.applyLink)    mk('primary',j.applyLink,'🔗 Apply Now');
+  if(j.contactEmail) mk('mail',`mailto:${j.contactEmail}`,'📧 '+j.contactEmail);
+  if(j.instructions) md('instr','📝 '+j.instructions);
+  if(j.fullJobPosting) mk('',j.fullJobPosting,'📄 Full Job Posting');
+  if(j.pdfLink)      mk('pdf',j.pdfLink,'📥 Download PDF');
+  if(!j.applyLink&&!j.contactEmail&&!j.instructions)
+    md('instr','⚠️ No direct application link available.');
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('detailPanel').classList.add('open');
+}
+const closeDetail=()=>{
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('detailPanel').classList.remove('open');
+};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
+
+/* ── VIEW ── */
+const setView=v=>{
+  CV=v;
+  document.getElementById('btnList').classList.toggle('active',v==='list');
+  document.getElementById('btnGrid').classList.toggle('active',v==='grid');
+  applyFilters();
+};
+
+/* ── COUNTS ── */
+function updCounts(){
+  Object.keys(TL).forEach(t=>{
+    const el=document.getElementById(`cnt-${t}`);
+    if(el) el.textContent=ALL.filter(j=>j.type===t).length;
+  });
+  // group totals
+  Object.entries(GROUPS).forEach(([g,types])=>{
+    const el=document.getElementById(`fcnt-${g}`);
+    if(el) el.textContent=ALL.filter(j=>types.includes(j.type)).length;
+  });
+  // stats bar
+  document.getElementById('sbTotal').textContent=ALL.length;
+  document.getElementById('sbActive').textContent=ALL.filter(j=>!isExp(j)).length;
+  document.getElementById('sbRemote').textContent=ALL.filter(j=>j.remote).length;
+  document.getElementById('sbCountries').textContent=new Set(ALL.map(j=>j.country).filter(Boolean)).size;
+  // new this week
+  const oneWeekAgo=new Date();oneWeekAgo.setDate(oneWeekAgo.getDate()-7);
+  document.getElementById('sbNew').textContent=ALL.filter(j=>{const d=pDate(j.date);return d&&d>=oneWeekAgo;}).length;
+}
+
+/* ── INIT ── */
+document.getElementById('searchInput').addEventListener('input',applyFilters);
+window.addEventListener('scroll',()=>{
+  document.getElementById('sTop').style.display=window.scrollY>400?'flex':'none';
+});
+
+fetch(CFG.jsonFile)
+  .then(r=>{if(!r.ok)throw new Error();return r.json();})
+  .then(data=>{
+    ALL=data.sort((a,b)=>(pDate(b.date)||0)-(pDate(a.date)||0));
+    updCounts();
+    buildRegions();
+    applyFilters();
+  })
+  .catch(()=>{
+    document.getElementById('jobsContainer').innerHTML=
+      `<div class="empty"><div class="ico">⚠️</div><h3>Unable to Load Jobs</h3><p>Make sure <code>offres.json</code> is in the same folder as this file.</p></div>`;
+  });
+</script>
+</body>
+</html>
