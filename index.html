@@ -1024,6 +1024,11 @@ function openDetail(j){
   document.getElementById('overlay').classList.add('open');
   document.getElementById('detailPanel').classList.add('open');
 }
+// ⬇️ AJOUTE CETTE FONCTION ICI ⬇️
+const closeDetail = () => {
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('detailPanel').classList.remove('open');
+};
 
 /* ── COUNTS ── */
 function updCounts(){
