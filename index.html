@@ -517,7 +517,7 @@
     </button>
     <div class="fgroup-panel">
       <div class="fpanel-label">International Development</div>
-      <div class="fpanel-item" data-type="meal" onclick="pickType('meal',this)">Monitoring &amp; Evaluation <span class="fpi-cnt" id="cnt-meal">0</span></div>
+      <div class="fpanel-item" data-type="meal" onclick="pickType('meal',this)">Monitoring & Evaluation <span class="fpi-cnt" id="cnt-meal">0</span></div>
       <div class="fpanel-item" data-type="research" onclick="pickType('research',this)">Research <span class="fpi-cnt" id="cnt-research">0</span></div>
       <div class="fpanel-item" data-type="prog-data" onclick="pickType('prog-data',this)">Programme Data Mgmt <span class="fpi-cnt" id="cnt-prog-data">0</span></div>
     </div>
@@ -532,10 +532,10 @@
     </button>
     <div class="fgroup-panel">
       <div class="fpanel-label">Public Health & Social Sciences</div>
-      <div class="fpanel-item" data-type="epidemiology" onclick="pickType('epidemiology',this)">Epidemiology & Health Data <span class="fpi-cnt" id="cnt-epidemiology">0</span></div>
+      <div class="fpanel-item" data-type="epidemiology" onclick="pickType('epidemiology',this)">Epidemiology <span class="fpi-cnt" id="cnt-epidemiology">0</span></div>
       <div class="fpanel-item" data-type="biostatistics" onclick="pickType('biostatistics',this)">Biostatistics <span class="fpi-cnt" id="cnt-biostatistics">0</span></div>
-      <div class="fpanel-item" data-type="demography" onclick="pickType('demography',this)">Demography & Population <span class="fpi-cnt" id="cnt-demography">0</span></div>
-      <div class="fpanel-item" data-type="social-research" onclick="pickType('social-research',this)">Social Research & Surveys <span class="fpi-cnt" id="cnt-social-research">0</span></div>
+      <div class="fpanel-item" data-type="demography" onclick="pickType('demography',this)">Demography <span class="fpi-cnt" id="cnt-demography">0</span></div>
+      <div class="fpanel-item" data-type="social-research" onclick="pickType('social-research',this)">Social Research <span class="fpi-cnt" id="cnt-social-research">0</span></div>
     </div>
   </div>
 
@@ -549,8 +549,8 @@
     <div class="fgroup-panel">
       <div class="fpanel-label">Statistics & Quantitative Methods</div>
       <div class="fpanel-item" data-type="official-stats" onclick="pickType('official-stats',this)">Official Statistics <span class="fpi-cnt" id="cnt-official-stats">0</span></div>
-      <div class="fpanel-item" data-type="survey" onclick="pickType('survey',this)">Survey & Sampling Methods <span class="fpi-cnt" id="cnt-survey">0</span></div>
-      <div class="fpanel-item" data-type="actuarial" onclick="pickType('actuarial',this)">Actuarial & Risk Analysis <span class="fpi-cnt" id="cnt-actuarial">0</span></div>
+      <div class="fpanel-item" data-type="survey" onclick="pickType('survey',this)">Survey Methods <span class="fpi-cnt" id="cnt-survey">0</span></div>
+      <div class="fpanel-item" data-type="actuarial" onclick="pickType('actuarial',this)">Actuarial & Risk <span class="fpi-cnt" id="cnt-actuarial">0</span></div>
     </div>
   </div>
 
@@ -608,6 +608,20 @@
       <div class="fpanel-label">Select regions</div>
     </div>
   </div>
+
+  <div class="fbar-count"><strong id="resCount">0</strong> results</div>
+  <div class="fbar-right">
+    <select class="sort-sel" id="sortSel" onchange="applyFilters()">
+      <option value="date">Most recent</option>
+      <option value="deadline">Deadline soon</option>
+      <option value="az">A → Z</option>
+    </select>
+    <div class="vbtns">
+      <button class="vbtn active" id="btnList" onclick="setView('list')" title="Terminal list">▶_</button>
+      <button class="vbtn" id="btnGrid" onclick="setView('grid')" title="Grid">⊞</button>
+    </div>
+  </div>
+</div>
 
   <!-- RIGHT: count + sort + view -->
   <div class="fbar-count"><strong id="resCount">0</strong> results</div>
