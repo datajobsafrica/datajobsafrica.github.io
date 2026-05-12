@@ -494,7 +494,7 @@
 
   <!-- TECH & DATA -->
   <div class="fgroup" id="fg-tech">
-    <button class="fgroup-btn" onclick="toggleGroup('fg-tech')">
+    <button class="fgroup-btn" onclick="toggleGroup('fg-tech', event)">
       🖥 Tech & Data
       <span class="fgroup-cnt hidden" id="fcnt-tech">0</span>
       <span class="arrow">▾</span>
@@ -746,14 +746,32 @@ function bTags(j){
 }
 
 /* ── DROPDOWN GROUPS ── */
-function toggleGroup(id){
-  const el=document.getElementById(id);
-  const wasOpen=el.classList.contains('open');
-  document.querySelectorAll('.fgroup.open').forEach(g=>g.classList.remove('open'));
-  if(!wasOpen) el.classList.add('open');
+/* ── DROPDOWN GROUPS ── */
+function toggleGroup(id, event) {
+  // On empêche le clic de remonter jusqu'au document
+  if (event) event.stopPropagation();
+
+  const el = document.getElementById(id);
+  const wasOpen = el.classList.contains('open');
+
+  // On ferme tous les autres menus d'abord
+  document.querySelectorAll('.fgroup.open').forEach(g => {
+    g.classList.remove('open');
+  });
+
+  // On bascule l'état du menu actuel
+  if (!wasOpen) {
+    el.classList.add('open');
+  }
 }
-document.addEventListener('click',e=>{
-  if(!e.target.closest('.fgroup')) document.querySelectorAll('.fgroup.open').forEach(g=>g.classList.remove('open'));
+
+// Fermer les menus si on clique ailleurs sur la page
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.fgroup')) {
+    document.querySelectorAll('.fgroup.open').forEach(g => {
+      g.classList.remove('open');
+    });
+  }
 });
 
 /* ── TYPE SELECTION ── */
@@ -945,41 +963,67 @@ function renderGrid(jobs){
 
 /* ── DETAIL PANEL ── */
 function openDetail(j){
-  document.getElementById('dpTitle').textContent=j.title;
-  document.getElementById('dpCompany').textContent=j.company;
-  document.getElementById('dpTags').innerHTML=
-    bTags(j)+
-    (j.region?tag('t-type','🌍 '+j.region):'')+
-    (j.duration&&j.duration!=='CDI'?tag('t-dl','⏱ '+j.duration):'');
-  document.getElementById('dpSummary').innerHTML=
-    j.summary?`<p>${j.summary}</p>`:'<p><em>No description available.</em></p>';
-  const A=document.getElementById('dpActions');
-  A.innerHTML='';
-  const mk=(cls,href,txt)=>{const a=document.createElement('a');a.href=href;a.target='_blank';a.rel='noopener';a.className='dp-act '+cls;a.textContent=txt;A.appendChild(a);};
-  const md=(cls,txt)=>{const d=document.createElement('div');d.className='dp-act '+cls;d.textContent=txt;A.appendChild(d);};
-  if(j.applyLink)    mk('primary',j.applyLink,'🔗 Apply Now');
-  if(j.contactEmail) mk('mail',`mailto:${j.contactEmail}`,'📧 '+j.contactEmail);
-  if(j.instructions) md('instr','📝 '+j.instructions);
-  if(j.fullJobPosting) mk('',j.fullJobPosting,'📄 Full Job Posting');
-  if(j.pdfLink)      mk('pdf',j.pdfLink,'📥 Download PDF');
-  if(!j.applyLink&&!j.contactEmail&&!j.instructions)
-    md('instr','⚠️ No direct application link available.');
+  document.getElementById('dpTitle').textContent = j.title;
+  document.getElementById('dpCompany').textContent = j.company;
+  document.getElementById('dpTags').innerHTML =
+    bTags(j) +
+    (j.region ? tag('t-type','🌍 '+j.region) : '') +
+    (j.duration && j.duration !== 'CDI' ? tag('t-dl','⏱ '+j.duration) : '');
+  document.getElementById('dpSummary').innerHTML =
+    j.summary ? `<p>${j.summary}</p>` : '<p><em>No description available.</em></p>';
+  
+  const A = document.getElementById('dpActions');
+  A.innerHTML = '';
+  
+  // 🔵 LIEN VERS LE JOB DESCRIPTION (fullJobPosting)
+  if (j.fullJobPosting) {
+    const jdLink = document.createElement('a');
+    jdLink.href = j.fullJobPosting;
+    jdLink.target = '_blank';
+    jdLink.rel = 'noopener';
+    jdLink.className = 'dp-act';
+    jdLink.textContent = '📄 Full Job Description';
+    A.appendChild(jdLink);
+  }
+  
+  // 🟢 LIEN POUR POSTULER (applyLink)
+  if (j.applyLink) {
+    const applyLink = document.createElement('a');
+    applyLink.href = j.applyLink;
+    applyLink.target = '_blank';
+    applyLink.rel = 'noopener';
+    applyLink.className = 'dp-act primary';
+    applyLink.textContent = '🔗 Apply Now';
+    A.appendChild(applyLink);
+  }
+  
+  // 📧 CONTACT EMAIL (optionnel)
+  if (j.contactEmail) {
+    const emailLink = document.createElement('a');
+    emailLink.href = `mailto:${j.contactEmail}`;
+    emailLink.className = 'dp-act mail';
+    emailLink.textContent = '📧 ' + j.contactEmail;
+    A.appendChild(emailLink);
+  }
+  
+  // 📝 INSTRUCTIONS (optionnel)
+  if (j.instructions) {
+    const instr = document.createElement('div');
+    instr.className = 'dp-act instr';
+    instr.textContent = '📝 ' + j.instructions;
+    A.appendChild(instr);
+  }
+  
+  if (!j.applyLink && !j.contactEmail && !j.instructions && !j.fullJobPosting) {
+    const msg = document.createElement('div');
+    msg.className = 'dp-act instr';
+    msg.textContent = '⚠️ No application link available.';
+    A.appendChild(msg);
+  }
+  
   document.getElementById('overlay').classList.add('open');
   document.getElementById('detailPanel').classList.add('open');
 }
-const closeDetail=()=>{
-  document.getElementById('overlay').classList.remove('open');
-  document.getElementById('detailPanel').classList.remove('open');
-};
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
-
-/* ── VIEW ── */
-const setView=v=>{
-  CV=v;
-  document.getElementById('btnList').classList.toggle('active',v==='list');
-  document.getElementById('btnGrid').classList.toggle('active',v==='grid');
-  applyFilters();
-};
 
 /* ── COUNTS ── */
 function updCounts(){
