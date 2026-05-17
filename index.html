@@ -473,6 +473,12 @@
       <div class="stat-lbl">New this week</div>
     </div>
   </div>
+  <div class="stat-cell">
+    <div>
+      <div class="stat-num" id="sbVisitors">—</div>
+      <div class="stat-lbl">Visitors</div>
+    </div>
+  </div>
   <div class="stat-sep"></div>
   <div class="live-badge">
     <div class="live-dot"></div>
@@ -510,7 +516,7 @@
 
   <!-- INTL DEVELOPMENT -->
   <div class="fgroup" id="fg-dev">
-    <button class="fgroup-btn" onclick="toggleGroup('fg-dev')">
+    <button class="fgroup-btn" onclick="toggleGroup('fg-dev', event)">
       🌍 Intl. Development
       <span class="fgroup-cnt hidden" id="fcnt-dev">0</span>
       <span class="arrow">▾</span>
@@ -525,7 +531,7 @@
 
   <!-- PUBLIC HEALTH -->
   <div class="fgroup" id="fg-health">
-    <button class="fgroup-btn" onclick="toggleGroup('fg-health')">
+    <button class="fgroup-btn" onclick="toggleGroup('fg-health', event)">
       🏥 Public Health
       <span class="fgroup-cnt hidden" id="fcnt-health">0</span>
       <span class="arrow">▾</span>
@@ -541,7 +547,7 @@
 
   <!-- STATISTICS -->
   <div class="fgroup" id="fg-stats">
-    <button class="fgroup-btn" onclick="toggleGroup('fg-stats')">
+    <button class="fgroup-btn" onclick="toggleGroup('fg-stats', event)">
       📊 Statistics
       <span class="fgroup-cnt hidden" id="fcnt-stats">0</span>
       <span class="arrow">▾</span>
@@ -556,7 +562,7 @@
 
   <!-- OPTIONS -->
   <div class="fgroup" id="fg-opts">
-    <button class="fgroup-btn" onclick="toggleGroup('fg-opts')">
+    <button class="fgroup-btn" onclick="toggleGroup('fg-opts', event)">
       ⚙ Options
       <span class="arrow">▾</span>
     </button>
@@ -599,7 +605,7 @@
 
   <!-- REGION -->
   <div class="fgroup" id="fg-region">
-    <button class="fgroup-btn" onclick="toggleGroup('fg-region')">
+    <button class="fgroup-btn" onclick="toggleGroup('fg-region', event)">
       📍 Region
       <span class="fgroup-cnt hidden" id="fcnt-region">0</span>
       <span class="arrow">▾</span>
@@ -609,21 +615,6 @@
     </div>
   </div>
 
-  <div class="fbar-count"><strong id="resCount">0</strong> results</div>
-  <div class="fbar-right">
-    <select class="sort-sel" id="sortSel" onchange="applyFilters()">
-      <option value="date">Most recent</option>
-      <option value="deadline">Deadline soon</option>
-      <option value="az">A → Z</option>
-    </select>
-    <div class="vbtns">
-      <button class="vbtn active" id="btnList" onclick="setView('list')" title="Terminal list">▶_</button>
-      <button class="vbtn" id="btnGrid" onclick="setView('grid')" title="Grid">⊞</button>
-    </div>
-  </div>
-</div>
-
-  <!-- RIGHT: count + sort + view -->
   <div class="fbar-count"><strong id="resCount">0</strong> results</div>
   <div class="fbar-right">
     <select class="sort-sel" id="sortSel" onchange="applyFilters()">
@@ -1050,6 +1041,25 @@ function updCounts(){
   const oneWeekAgo=new Date();oneWeekAgo.setDate(oneWeekAgo.getDate()-7);
   document.getElementById('sbNew').textContent=ALL.filter(j=>{const d=pDate(j.date);return d&&d>=oneWeekAgo;}).length;
 }
+
+/* ── VIEW TOGGLE ── */
+function setView(v){
+  CV=v;
+  document.getElementById('btnList').classList.toggle('active',v==='list');
+  document.getElementById('btnGrid').classList.toggle('active',v==='grid');
+  applyFilters();
+}
+
+/* ── VISITOR COUNTER ── */
+(function(){
+  const BASE = 1000;
+  const KEY = 'dja_visitors';
+  let count = parseInt(localStorage.getItem(KEY) || BASE, 10);
+  count += 1;
+  localStorage.setItem(KEY, count);
+  const el = document.getElementById('sbVisitors');
+  if(el) el.textContent = count.toLocaleString();
+})();
 
 /* ── INIT ── */
 document.getElementById('searchInput').addEventListener('input',applyFilters);
